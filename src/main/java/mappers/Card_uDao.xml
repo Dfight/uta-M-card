@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="uta.macross.dao.Card_uDao">
+    <select id="getAllCard" parameterType="java.util.Map" resultType="java.util.HashMap">
+      select * from (
+        select
+        c.Card_ID,c.Card_Name,
+        ci.Card_I_Total,ci.Card_I_IMG,ci.Card_I_Star,
+        cm.Card_M_Total,cm.Card_M_IMG,
+        a.Attr_IMG,a.Attr_Name,
+        o.Opus_Name
+        from
+            card c,
+            card_init ci,
+            card_max cm,
+            attribute a,
+            attr_card ac,
+            opus o,
+            opus_card oc,
+            card_clothing_fighter ccf,
+            singer_card sc
+        where c.Card_ID=ci.Card_ID
+            AND c.Card_ID = oc.O_Card_CID
+            AND c.Card_ID = ccf.C_C_F_Card
+            AND c.Card_ID=cm.Card_ID
+            AND oc.O_Card_OID=o.Opus_ID
+            AND ac.AC_CID = c.Card_ID
+            AND c.Card_ID = sc.Singer_Card_CID
+            AND a.Attr_ID = ac.AC_AID
+            <if test="attr.size()!=0">
+                AND ac.AC_AID in
+                <foreach collection="attr" index="index" item="item" open="(" close=")" separator=",">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="opus.size()!=0">
+                AND oc.O_Card_OID in
+                <foreach collection="opus" index="index" item="item" open="(" close=")" separator=",">
+                    #{item}
+                </foreach>
+            </if>
+        <if test="singer.size()!=0">
+            AND sc.Singer_Card_SID in
+            <foreach collection="singer" index="index" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="fighter!=0">
+            AND ccf.C_C_F_Fighter = #{fighter}
+        </if>
+        <if test="clothing!=0">
+            AND ccf.C_C_F_Clothing = #{clothing}
+        </if>
+        <if test="star!=0">
+            AND (ci.Card_I_Star = #{star} or cm.Card_M_Star = #{star})
+        </if>
+        GROUP BY c.Card_ID) a
+        LIMIT #{start},#{end}
+    </select>
+    <select id="getCardType" resultType="uta.macross.entry.cardClothingFighter">
+        select * from card_clothing_fighter WHERE C_C_F_Card = #{id}
+    </select>
+    <select id="getCardF" resultType="java.util.HashMap">
+        SELECT
+            card.*,attribute.Attr_IMG,attribute.Attr_Name,
+            card_init.*,card_max.*,
+            fighter.*,
+            opus.Opus_IMG,opus.Opus_Name
+          from
+            attribute,attr_card,
+            card,card_clothing_fighter,card_init,card_max,
+            fighter,
+            opus,opus_card
+          WHERE
+                    attribute.Attr_ID = attr_card.AC_AID
+            AND	attr_card.AC_CID = card.Card_ID
+            AND card.Card_ID = card_clothing_fighter.C_C_F_Card
+            AND card.Card_ID = card_init.Card_ID
+            AND card.Card_ID = card_max.Card_ID
+            AND card_clothing_fighter.C_C_F_Fighter = fighter.Fighter_ID
+            AND card.Card_ID = opus_card.O_Card_CID
+            AND opus.Opus_ID = opus_card.O_Card_OID
+            AND card.Card_ID = #{id}
+    </select>
+    <select id="getCardC" resultType="java.util.HashMap">
+        SELECT
+        card.*,attribute.Attr_IMG,attribute.Attr_Name,
+        card_init.*,card_max.*,
+        clothing.*,
+        opus.Opus_IMG,opus.Opus_Name
+        from
+        attribute,attr_card,
+        card,card_clothing_fighter,card_init,card_max,
+        clothing,
+        opus,opus_card
+        WHERE
+                attribute.Attr_ID = attr_card.AC_AID
+        AND	attr_card.AC_CID = card.Card_ID
+        AND card.Card_ID = card_clothing_fighter.C_C_F_Card
+        AND card.Card_ID = card_init.Card_ID
+        AND card.Card_ID = card_max.Card_ID
+        AND card_clothing_fighter.C_C_F_Clothing = clothing.Clothing_ID
+        AND card.Card_ID = opus_card.O_Card_CID
+        AND opus.Opus_ID = opus_card.O_Card_OID
+        AND card.Card_ID = #{id}
+    </select>
+    <select id="getSingerByCard" resultType="java.util.HashMap">
+        select singer.*
+        from singer,singer_card
+        where singer.Singer_ID=singer_card.Singer_Card_SID
+        AND singer_card.Singer_Card_CID = #{id}
+    </select>
+</mapper>

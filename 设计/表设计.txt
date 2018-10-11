@@ -1,0 +1,52 @@
+1 歌姬表				singer
+歌姬id 歌姬姓名  人像
+2 衣服表				clothing
+衣服id 衣服名字   特性 立绘
+3 飞机表				Fighter
+飞机id 飞机名字 驾驶员  攻击 命中 立绘
+4 卡面表1				card
+卡面id 卡名 
+5 卡面2未觉				card_init
+卡面id 星级 未觉卡面 8属性 3技能
+6 卡面3觉醒				cart_max
+卡面id 星级 觉醒卡面 8属性 3技能
+7 歌姬相性表				singer_Card
+相性id 卡面id 歌姬id
+8 衣服歌姬表				singer_Clothing
+id 衣服id 歌姬id
+
+1 歌曲表				song
+id 歌名 封面   歌手
+2难度表					difficult
+id 难度 消耗体力
+3					song_detailed
+id 歌名id 难度id 等级 fc数 解锁方法
+4					singer_proficiency
+id 歌曲id 歌姬id 解锁要求
+
+1 属性表				Attribute
+id 属性名 图标
+2 卡面属性				Attr_Card
+id 属性id 卡面id
+3 歌曲属性				Attr_Song
+id 属性id 歌曲id
+
+1 作品表				opus
+id 作品名
+2 歌姬作品表				opus_Singer
+id 歌姬id 作品id
+3 飞机作品表				opus_fighter
+id 飞机id 作品id
+4 歌曲作品表				opus_song
+id 歌曲id 作品id
+5 卡面作品表				opus_card
+id 卡面id 作品id
+
+1 卡面飞机衣服表			card_Clothing_fighter
+id 卡面id 衣服id 飞机id    衣服id和飞机id不能同为空
+
+技能表					skill
+id 类型	等级	日语介绍	中文介绍
+
+技能类型                skill_type
+id 位置 类型

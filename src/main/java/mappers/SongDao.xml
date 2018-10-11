@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="uta.macross.dao.SongDao">
+    <insert id="addSong" parameterType="uta.macross.entry.song">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="Song_ID">
+            SELECT LAST_INSERT_ID() AS Song_ID
+        </selectKey>
+        insert into song(Song_Name,Song_IMG,Song_Singer) VALUES(#{Song_Name},#{Song_IMG},#{Song_Singer})
+    </insert>
+    <select id="isOpus" parameterType="uta.macross.entry.opus_song" resultType="java.lang.Integer">
+        SELECT COUNT(*) from opus_song where O_Song_SID=#{O_Song_SID}
+    </select>
+    <insert id="addOpus" parameterType="uta.macross.entry.opus_song">
+        INSERT INTO opus_song(O_Song_Sid,O_Song_OID) VALUES (#{O_Song_SID},#{O_Song_OID})
+    </insert>
+    <update id="editOpus" parameterType="uta.macross.entry.opus_song">
+        UPDATE opus_song SET O_Song_OID = #{O_Song_OID} WHERE  O_Song_SID = #{O_Song_SID}
+    </update>
+
+
+    <select id="isAttr" parameterType="uta.macross.entry.attrSong" resultType="java.lang.Integer">
+        SELECT COUNT(*) from attr_song where AS_SID=#{AS_SID}
+    </select>
+    <insert id="addAttr" parameterType="uta.macross.entry.attrSong">
+        INSERT INTO attr_song(AS_SID,AS_AID) VALUES (#{AS_SID},#{AS_AID})
+    </insert>
+    <update id="editAttr" parameterType="uta.macross.entry.attrSong">
+        UPDATE attr_song SET AS_AID = #{AS_AID} WHERE  AS_SID = #{AS_SID}
+    </update>
+
+    <select id="isDiff" parameterType="uta.macross.entry.song_detailed" resultType="java.lang.Integer">
+        SELECT COUNT(*) from song_detailed where S_D_SID=#{S_D_SID} AND S_D_DID=#{S_D_DID}
+    </select>
+    <insert id="addDiff" parameterType="uta.macross.entry.song_detailed">
+        INSERT INTO song_detailed(S_D_SID,S_D_DID,S_D_Rank,S_D_FC,S_D_Unlock)
+        VALUES (#{S_D_SID},#{S_D_DID},#{S_D_Rank},#{S_D_FC},#{S_D_Unlock})
+    </insert>
+    <update id="editDiff" parameterType="uta.macross.entry.song_detailed">
+        UPDATE song_detailed SET S_D_Rank = #{S_D_Rank} ,S_D_FC = #{S_D_FC} ,S_D_Unlock = #{S_D_Unlock}
+        WHERE  S_D_SID=#{S_D_SID} AND S_D_DID=#{S_D_DID}
+    </update>
+
+    <select id="isProf" parameterType="uta.macross.entry.singer_proficiency" resultType="java.lang.Integer">
+        SELECT COUNT(*) from singer_proficiency where S_P_SongID=#{S_P_SongID} AND S_P_SingerID=#{S_P_SingerID}
+    </select>
+    <insert id="addProf" parameterType="uta.macross.entry.singer_proficiency">
+        INSERT INTO singer_proficiency(S_P_SongID,S_P_SingerID,S_P_Unlock)
+        VALUES (#{S_P_SongID},#{S_P_SingerID},#{S_P_Unlock})
+    </insert>
+    <update id="editProf" parameterType="uta.macross.entry.singer_proficiency">
+        UPDATE singer_proficiency SET S_P_Unlock = #{S_P_Unlock}
+        WHERE  S_P_SongID=#{S_P_SongID} AND S_P_SingerID=#{S_P_SingerID}
+    </update>
+</mapper>

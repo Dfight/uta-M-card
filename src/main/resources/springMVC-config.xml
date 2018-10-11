@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    <!--配置自动扫描包:仅扫描controller层,过滤器,只扫描带有@Controller注解的类,use-default-filters="false":不使用默认过滤器-->
+    <context:component-scan base-package="uta.macross" use-default-filters="false">
+        <context:include-filter type="annotation"
+                                expression="org.springframework.stereotype.Controller"></context:include-filter>
+    </context:component-scan>
+    <!--配置springMVC注解-->
+    <mvc:annotation-driven/>
+    <!--静态资源映射-->
+    <mvc:resources mapping="/static/**" location="/static/"/>
+    <mvc:resources mapping="/search/**" location="/search/"/>
+    <!--<mvc:interceptors>-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/**/toMain"/>-->
+            <!--<bean class="com.jokeraee.ssm.Interceptor.LoginInterceptor"/>-->
+        <!--</mvc:interceptor>-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/login"/>-->
+            <!--<mvc:mapping path="/toLogin"/>-->
+            <!--<bean class="com.jokeraee.ssm.Interceptor.LoginInterceptor2"/>-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
+    <!--配置视图解析器-->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/view/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+</beans>

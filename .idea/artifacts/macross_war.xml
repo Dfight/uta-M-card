@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="macross:war">
+    <output-path>$PROJECT_DIR$/out/artifacts/macross_war</output-path>
+    <root id="archive" name="macross_war.war">
+      <element id="artifact" artifact-name="macross:war exploded" />
+    </root>
+  </artifact>
+</component>

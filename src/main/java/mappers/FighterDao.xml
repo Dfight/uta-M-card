@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="uta.macross.dao.FighterDao">
+    <insert id="addFighter" parameterType="uta.macross.entry.fighter">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="Fighter_ID">
+            SELECT LAST_INSERT_ID() AS Fighter_ID
+        </selectKey>
+        INSERT INTO FIGHTER(Fighter_Name,Fighter_Driver,Fighter_Attack,Fighter_Hit,Fighter_IMG)
+        VALUES(#{Fighter_Name},#{Fighter_Driver},#{Fighter_Attack},#{Fighter_Hit},#{Fighter_IMG})
+    </insert>
+    <update id="editFighter" parameterType="uta.macross.entry.fighter">
+        UPDATE FIGHTER SET
+            Fighter_Name=#{Fighter_Name},
+            Fighter_Driver=#{Fighter_Driver},
+            Fighter_Attack=#{Fighter_Attack},
+            Fighter_Hit=#{Fighter_Hit},
+            Fighter_IMG=#{Fighter_IMG}
+        WHERE Fighter_ID=#{Fighter_ID}
+    </update>
+    <insert id="addFighterOpus" parameterType="uta.macross.entry.opus_fighter">
+        insert into opus_fighter(O_Fighter_FID,O_Fighter_OID) VALUES (#{O_Fighter_FID},#{O_Fighter_OID})
+    </insert>
+    <select id="queryAllFighter" resultType="uta.macross.entry.fighter">
+        select * from fighter
+    </select>
+    <select id="queryFighterOpus" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        select O_Fighter_OID from opus_fighter where O_Fighter_FID = #{fighter}
+    </select>
+
+</mapper>

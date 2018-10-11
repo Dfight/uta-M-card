@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="uta.macross.dao.CardDao">
+    <insert id="addCard" parameterType="uta.macross.entry.card">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="Card_ID">
+            SELECT LAST_INSERT_ID() AS Card_ID
+        </selectKey>
+        INSERT INTO CARD(Card_Name) VALUES (#{Card_Name})
+    </insert>
+    <insert id="addCardOpus" parameterType="uta.macross.entry.opus_card">
+        INSERT INTO OPUS_CARD(O_Card_OID,O_Card_CID) VALUES (#{O_Card_OID},#{O_Card_CID})
+    </insert>
+    <insert id="addCardAttr" parameterType="uta.macross.entry.attrCard">
+        INSERT INTO ATTR_CARD(AC_AID,AC_CID) VALUES (#{ac_aid},#{ac_cid})
+    </insert>
+    <insert id="addCardClothing" parameterType="uta.macross.entry.cardClothingFighter">
+        INSERT INTO card_clothing_fighter(C_C_F_Card,C_C_F_Clothing) VALUES (#{C_C_F_Card},#{C_C_F_Clothing})
+    </insert>
+    <insert id="addCardFighter" parameterType="uta.macross.entry.cardClothingFighter">
+        INSERT INTO card_clothing_fighter(C_C_F_Card,C_C_F_Fighter) VALUES (#{C_C_F_Card},#{C_C_F_Fighter})
+    </insert>
+    <insert id="addCardInit" parameterType="uta.macross.entry.cardInit">
+        INSERT INTO card_init(
+        Card_ID,
+        Card_I_Star,
+        Card_I_IMG,
+        Card_I_Total,
+        Card_I_Soul,
+        Card_I_Voice,
+        Card_I_Charm,
+        Card_I_Life,
+        Card_I_Support,
+        Card_I_FoldWave,
+        Card_I_Luck,
+        Card_I_C_S,
+        Card_I_A_S,
+        Card_I_L_S
+        )VALUES(
+        #{Card_ID},
+        #{Card_I_Star},
+        #{Card_I_IMG},
+        #{Card_I_Total},
+        #{Card_I_Soul},
+        #{Card_I_Voice},
+        #{Card_I_Charm},
+        #{Card_I_Life},
+        #{Card_I_Support},
+        #{Card_I_FoldWave},
+        #{Card_I_Luck},
+        #{Card_I_C_S},
+        #{Card_I_A_S},
+        #{Card_I_L_S}
+        )
+    </insert>
+    <insert id="addCardMax" parameterType="uta.macross.entry.cardMax">
+        INSERT INTO card_max(
+        Card_ID,
+        Card_M_Star,
+        Card_M_IMG,
+        Card_M_Total,
+        Card_M_Soul,
+        Card_M_Voice,
+        Card_M_Charm,
+        Card_M_Life,
+        Card_M_Support,
+        Card_M_FoldWave,
+        Card_M_Luck,
+        Card_M_C_S,
+        Card_M_A_S,
+        Card_M_L_S
+        )VALUES(
+        #{Card_ID},
+        #{Card_M_Star},
+        #{Card_M_IMG},
+        #{Card_M_Total},
+        #{Card_M_Soul},
+        #{Card_M_Voice},
+        #{Card_M_Charm},
+        #{Card_M_Life},
+        #{Card_M_Support},
+        #{Card_M_FoldWave},
+        #{Card_M_Luck},
+        #{Card_M_C_S},
+        #{Card_M_A_S},
+        #{Card_M_L_S}
+        )
+    </insert>
+    <insert id="addCardSinger" parameterType="uta.macross.entry.singer_card">
+        INSERT INTO singer_card(Singer_Card_SID,Singer_Card_CID) VALUES (#{Singer_Card_SID},#{Singer_Card_CID})
+    </insert>
+</mapper>

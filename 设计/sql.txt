@@ -1,0 +1,97 @@
+create table Singer(
+Singer_ID INT PRIMARY key auto_increment,
+Singer_Name VARCHAR(30) NOT NULL,
+Singer_IMG VARCHAR(30)
+);
+create table Clothing(
+Clothing_ID int PRIMARY KEY auto_increment,
+Clothing_Name VARCHAR(30) not NULL,
+Clothing_Features VARCHAR(30) not NULL,
+Clothing_IMG VARCHAR(30)
+);
+CREATE TABLE Fighter(
+Fighter_ID int PRIMARY KEY auto_increment,
+Fighter_Name VARCHAR(30) not null,
+Fighter_Driver VARCHAR(30),
+Fighter_Attack int not NULL,
+Fighter_Hit int not NULL,
+Fighter_IMG VARCHAR(30)
+);
+
+
+CREATE TABLE Card(
+Card_ID int PRIMARY KEY auto_increment,
+Card_Name VARCHAR(30) not null
+);
+CREATE table Card_Init(
+Card_ID int PRIMARY KEY,
+Card_I_Star INT not NULL,
+Card_I_IMG VARCHAR(30),
+Card_I_Total INT NOT NULL,
+Card_I_Soul INT NOT NULL,
+Card_I_Voice INT NOT NULL,
+Card_I_Charm INT NOT NULL,
+Card_I_Life INT NOT NULL,
+Card_I_Support INT NOT NULL,
+Card_I_FoldWave INT NOT NULL,
+Card_I_Luck INT NOT NULL,
+Card_I_C_S VARCHAR(50) NOT NULL,
+Card_I_A_S VARCHAR(50) NOT NULL,
+Card_I_L_S VARCHAR(50) NOT NULL
+);
+CREATE table Card_Max(
+Card_ID int PRIMARY KEY,
+Card_M_Star INT not NULL,
+Card_M_IMG VARCHAR(30),
+Card_M_Total INT NOT NULL,
+Card_M_Soul INT NOT NULL,
+Card_M_Voice INT NOT NULL,
+Card_M_Charm INT NOT NULL,
+Card_M_Life INT NOT NULL,
+Card_M_Support INT NOT NULL,
+Card_M_FoldWave INT NOT NULL,
+Card_M_Luck INT NOT NULL,
+Card_M_C_S VARCHAR(50) NOT NULL,
+Card_M_A_S VARCHAR(50) NOT NULL,
+Card_M_L_S VARCHAR(50) NOT NULL
+);
+
+create TABLE Singer_Card(
+Singer_Card_ID int PRIMARY KEY auto_increment,
+Singer_Card_CID INT NOT NULL,
+Singer_Card_SID int not NULL
+);
+CREATE table Singer_Clothing(
+Singer_Clothing_ID int PRIMARY KEY auto_increment,
+Singer_Clothing_SID int not NULL,
+Singer_Clothing_CID int not null
+);
+
+/*-----------------------------*/
+
+create TABLE Song(
+Song_ID int PRIMARY key auto_increment,
+Song_Name VARCHAR(30) not NULL,
+Song_IMG VARCHAR(30),
+Song_Singer VARCHAR(50) not null;
+);
+create table Difficulty(
+Diff_ID int PRIMARY key auto_increment,
+Diff_Diff VARCHAR(15) not NULL,
+Diff_Consume INT NOT NULL,
+);
+CREATE TABLE Song_detailed(
+S_D_ID int PRIMARY key auto_increment,
+S_D_SID int not NULL,
+S_D_DID int not NULL,
+S_D_Rank int not NULL,
+S_D_FC int not null,
+S_D_Unlock VARCHAR(50) NOT null,
+);
+create TABLE Singer_Proficiency(
+S_P_ID int PRIMARY key auto_increment,
+S_P_SongID int not NULL,
+S_P_SingerID int not NULL,
+S_P_Unlock VARCHAR(50) NOT null,
+);
+

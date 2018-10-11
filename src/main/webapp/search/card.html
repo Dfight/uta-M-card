@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+    <script type="text/javascript" src="../static/urlSetting.js"></script>
+    <script type="text/javascript" src="../static/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="../static/js/jquery.min.js"></script>
+    <script type="text/javascript" src="../static/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <script type="text/javascript" src="../static/js/vue.min.js"></script>
+    <link rel="stylesheet" type="text/css"  href="../static/font-awesome/css/font-awesome.min.css">
+
+</head>
+<body style="height: 100%" class="cardbackground">
+<div class="col-md-8 col-md-offset-2 cardDiv" style="text-align: center" id="card">
+    <h1 style="margin-left: auto;margin-right: auto" id="cardName">{{cardName}}</h1>
+    <div id="cardIMG" class="col-md-8">
+        <div class='col-md-6'>
+            <img :src="I_IMG" >
+        </div>
+        <div class='col-md-6'>
+            <img :src="M_IMG">
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="col-md-12" id="attr">
+            <img :src="attrIMG" style='display: inline-block;width: 70px'>
+        </div>
+        <div class="col-md-12" id="opus">
+             <img :src="opusIMG" style='display: inline-block;width: 100%;margin-top: -60px'>
+        </div>
+    </div>
+    <div class="col-md-8" >
+        <div id="star" style="margin-top: -70px">
+            <div v-if="initStar==1" >
+                <div style="color: #FFC600;" class="col-md-6">
+                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-star-o fa-2x"></i>
+                    <i class="fa fa-star-o fa-2x"></i>
+                    <i class="fa fa-star-o fa-2x"></i>
+                    <i class="fa fa-star-o fa-2x"></i>
+                    <i class="fa fa-star-o fa-2x"></i>
+                </div>
+                <div style="color: #ED002F" class="col-md-6">
+                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-star-o fa-2x"></i>
+                    <i class="fa fa-star-o fa-2x"></i>
+                    <i class="fa fa-star-o fa-2x"></i>
+                    <i class="fa fa-star-o fa-2x"></i>
+                </div>
+            </div>
+            <div v-if="initStar==2" >
+                <div style="color: #FFC600" class="col-md-6">
+                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-star-o fa-2x"></i>
+                    <i class="fa fa-star-o fa-2x"></i>
+                    <i class="fa fa-star-o fa-2x"></i>
+                    <i class="fa fa-star-o fa-2x"></i>
+                </div>
+                <div style="color: #ED002F" class="col-md-6">
+                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-star-o fa-2x"></i>
+                    <i class="fa fa-star-o fa-2x"></i>
+                    <i class="fa fa-star-o fa-2x"></i>
+                </div>
+            </div>
+            <div v-if="initStar==3" >
+                <div style="color: #FFC600" class="col-md-6">
+                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-star-o fa-2x"></i>
+                    <i class="fa fa-star-o fa-2x"></i>
+                    <i class="fa fa-star-o fa-2x"></i>
+                </div>
+                <div style="color: #ED002F" class="col-md-6">
+                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-star-o fa-2x"></i>
+                    <i class="fa fa-star-o fa-2x"></i>
+                </div>
+            </div>
+            <div v-if="initStar==4" >
+                <div style="color: #FFC600" class="col-md-6">
+                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-star-o fa-2x"></i>
+                    <i class="fa fa-star-o fa-2x"></i>
+                </div>
+                <div style="color: #ED002F" class="col-md-6">
+                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-star-o fa-2x"></i>
+                </div>
+            </div>
+            <div v-if="initStar==5" >
+                <div style="color: #FFC600;" class="col-md-6">
+                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-star-o fa-2x"></i>
+                </div>
+                <div style="color: #ED002F" class="col-md-6">
+                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-star fa-2x"></i>
+                    <i class="fa fa-star fa-2x"></i>
+                </div>
+            </div>
+        </div>
+        <div id="skill" style="font-size: 20px;margin-top: 50px">
+            <div class="col-md-5">{{Card_I_A_S}}</div>
+            <div class="col-md-2">A技能</div>
+            <div class="col-md-5">{{Card_M_A_S}}</div>
+            <hr class="col-md-12" style="border-top-color: black;margin-top: 10px;margin-bottom: 10px" />
+            <div class="col-md-5">{{Card_I_C_S}}</div>
+            <div class="col-md-2">C技能</div>
+            <div class="col-md-5">{{Card_M_C_S}}</div>
+            <hr class="col-md-12" style="border-top-color: black;margin-top: 10px;margin-bottom: 10px" />
+            <div class="col-md-5">{{Card_I_L_S}}</div>
+            <div class="col-md-2">L技能</div>
+            <div class="col-md-5">{{Card_M_L_S}}</div>
+            <hr class="col-md-12" style="border-top-color: black;margin-top: 10px;margin-bottom: 10px" />
+        </div>
+        <div v-for="info in infos" style="font-size: 20px;margin-top: 400px">
+            <div class="col-md-5">{{info.init}}</div>
+            <div class="col-md-2">{{info.title}}</div>
+            <div class="col-md-5">{{info.max}}</div>
+            <hr class="col-md-12" style="border-top-color: black;margin-top: 10px;margin-bottom: 10px" />
+        </div>
+    </div>
+    <div class="col-md-4" id="CoF">
+        <div style="display: none;font-size: 25px" id="clothing">
+            <div id="clothingIMG" style="margin-top: -60px">
+                <img :src="clothingIMG" style='width: 100%'>
+            </div>
+            <p id="clothingName" >{{clothingName}}</p>
+            <p id="clothingSinger">{{clothingSinger}}</p>
+            <p id="clothingFeatures">{{clothingFeatures}}</p>
+        </div>
+        <div style="display:none;font-size: 30px" id="fighter" >
+            <div id="fighterIMG" style="margin-top: -80px">
+                <img :src="fighterIMG" style='width: 100%'>
+            </div>
+            <p id="fighterName" style="margin-top: -40px">{{fighterName}}</p>
+            <p id="fighterDriver">{{fighterDriver}}</p>
+            <p id="fighterAttack">攻击:{{fighterAttack}}</p>
+            <p id="fighterHit">命中:{{fighterHit}}</p>
+        </div>
+        <div v-for="s in singer" style="width:50%;display: inline-block">
+               <img :src="s.img" style="width: 100%">
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    var img = "https://cdn-image.pf.dena.com/fa9c327e33426cd5e3dff097aa3feee754c90f9a/1/";//图片文件前缀
+    var card = new Vue({
+        el: '#card',
+        data: {
+            cardName:"",
+            attrIMG:"",
+            opusIMG:"",
+            I_IMG:"",
+            M_IMG:"",
+            fighterIMG:"",
+            fighterDriver:"",
+            fighterName:"",
+            fighterAttack:"",
+            fighterHit:"",
+            clothingIMG:"",
+            clothingSinger:"",
+            clothingName:"",
+            clothingFeatures:"",
+            initStar :"",
+            Card_I_A_S:"",
+            Card_I_C_S:"",
+            Card_I_L_S:"",
+            Card_M_A_S:"",
+            Card_M_C_S:"",
+            Card_M_L_S:"",
+            infos:[],
+            singer:[]
+        }
+    });
+    function getQueryVariable(variable){
+        var query = window.location.search.substring(1);
+        var vars = query.split("&");
+        for (var i=0;i<vars.length;i++) {
+            var pair = vars[i].split("=");
+            if(pair[0] == variable){return pair[1];}
+        }
+        return(false);
+    }
+    $.ajax({
+        url:"http://localhost:8080/uta-macross/card_u/getCardInfo",
+        dataType:'json',
+        async:false,
+        data:{
+            id:getQueryVariable("c")
+        },
+        success:function(data){
+            console.log(data.card);
+            var c = data.card;
+            var s = data.singer;
+            card.cardName = c.Card_Name;
+            card.attrIMG = img+c.Attr_IMG;
+            card.opusIMG = img+c.Opus_IMG;
+            card.I_IMG = img+c.Card_I_IMG;
+            card.M_IMG = img+c.Card_M_IMG;
+            card.initStar=c.Card_I_Star;
+            card.Card_I_A_S=c.Card_I_A_S;
+            card.Card_I_C_S=c.Card_I_C_S;
+            card.Card_I_L_S=c.Card_I_L_S;
+            card.Card_M_A_S=c.Card_M_A_S;
+            card.Card_M_C_S=c.Card_M_C_S;
+            card.Card_M_L_S=c.Card_M_L_S;
+            card.infos.push(
+                {init:c.Card_I_Total,title:"Total",max:c.Card_M_Total},
+                {init:c.Card_I_Soul,title:"Soul",max:c.Card_M_Soul},
+                {init:c.Card_I_Voice,title:"Voice",max:c.Card_M_Voice},
+                {init:c.Card_I_Charm,title:"Charm",max:c.Card_M_Charm},
+                {init:c.Card_I_Life,title:"Life",max:c.Card_M_Life},
+                {init:c.Card_I_Support,title:"Support",max:c.Card_M_Support},
+                {init:c.Card_I_FoldWave,title:"FoldWave",max:c.Card_M_FoldWave},
+                {init:c.Card_I_Luck,title:"Luck",max:c.Card_M_Luck}
+                )
+            s.forEach(function (i) {
+                card.singer.push({img:img+i.Singer_IMG})
+            })
+            if(c.Fighter_ID!=undefined){
+                    $("#fighter").css("display","block");
+                    card.fighterIMG=img+c.Fighter_IMG;
+                    card.fighterDriver=c.Fighter_Driver;
+                    card.fighterName=c.Fighter_Name;
+                    card.fighterAttack=c.Fighter_Attack;
+                    card.fighterHit=c.Fighter_Hit;
+
+            }else{
+                $("#clothing").css("display","block");
+                card.clothingIMG=img+c.Clothing_IMG;
+                card.clothingSinger="";
+                card.clothingName=c.Clothing_Name;
+                card.clothingFeatures=c.Clothing_Features;
+            }
+
+        }
+    })
+</script>
+</html>

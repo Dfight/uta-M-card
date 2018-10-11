@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="uta.macross.dao.SingerDao">
+    <insert id="addSinger" parameterType="uta.macross.entry.singer">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="Singer_ID">
+            SELECT LAST_INSERT_ID() AS Singer_ID
+        </selectKey>
+        insert into singer(SINGER_NAME,SINGER_IMG,SINGER_IMG1) VALUES(#{Singer_Name},#{Singer_IMG},#{Singer_IMG1})
+    </insert>
+    <update id="updataSinger" parameterType="uta.macross.entry.singer">
+        update singer SET
+                    Singer_Name = #{Singer_Name}
+                <if test="Singer_IMG!=null">
+                    ,Singer_IMG = #{Singer_IMG}
+                </if>
+                <if test="Singer_IMG!=null">
+                    ,Singer_IMG1 = #{Singer_IMG1}
+                </if>
+        wherer Singer_ID = #{Singer_ID}
+    </update>
+    <select id="queryAllSinger" resultType="uta.macross.entry.singer">
+        Select * from singer
+    </select>
+    <insert id="addSingerOpus" parameterType="uta.macross.entry.opus_singer">
+        insert into opus_singer(O_Singer_SID,O_Singer_OID) VALUES (#{O_Singer_SID},#{O_Singer_OID})
+    </insert>
+    <select id="getOpusBySingerID" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select O_Singer_OID from OPUS_SINGER where O_Singer_SID = #{O_Singer_SID}
+    </select>
+</mapper>

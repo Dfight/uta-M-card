@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="uta.macross.dao.OpusDao">
+    <insert id="addOpus" parameterType="uta.macross.entry.opus">
+        insert into OPUS(OPUS_NAME,OPUS_IMG) VALUES(#{Opus_Name},#{Opus_IMG})
+    </insert>
+    <select id="queryAllOpus" resultType="uta.macross.entry.opus">
+        Select * from opus
+    </select>
+
+
+</mapper>

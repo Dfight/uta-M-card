@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="uta.macross.dao.ClothingDao">
+    <insert id="addClothing" parameterType="uta.macross.entry.clothing">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="Clothing_ID">
+            SELECT LAST_INSERT_ID() AS Clothing_ID
+        </selectKey>
+        INSERT INTO clothing(Clothing_Name,Clothing_Features,Clothing_IMG)
+        VALUES (#{Clothing_Name},#{Clothing_Features},#{Clothing_IMG})
+    </insert>
+    <insert id="addClothingSinger" parameterType="uta.macross.entry.singer_clothing">
+        INSERT  INTO singer_clothing(Singer_Clothing_SID,Singer_Clothing_CID)
+        VALUES (#{Singer_Clothing_SID},#{Singer_Clothing_CID})
+    </insert>
+    <select id="queryAllClothing" resultType="uta.macross.entry.clothing">
+        select * from clothing
+    </select>
+    <select id="queryClothingSinger" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select Singer_Clothing_SID from singer_clothing where Singer_Clothing_CID = #{clothing}
+    </select>
+
+</mapper>

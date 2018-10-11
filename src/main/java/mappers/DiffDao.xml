@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    <mapper namespace="uta.macross.dao.DiffDao">
+    <insert id="addDiff" parameterType="uta.macross.entry.difficulty">
+        insert into difficulty(DIFF_DIFF,DIFF_CONSUME) VALUES(#{Diff_Diff},#{Diff_Consume})
+    </insert>
+    <select id="queryAllDiff" resultType="uta.macross.entry.difficulty">
+        Select * from difficulty
+    </select>
+
+
+
+</mapper>
