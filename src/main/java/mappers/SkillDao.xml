@@ -10,8 +10,11 @@
     <select id="getAllSkill" resultType="uta.macross.entry.skill">
         select * from skill
     </select>
-    <insert id="addSkillType" parameterType="java.util.HashMap">
-        INSERT into skill_type(pos,type) VALUES (#{pos},#{type})
+    <insert id="addSkillType" parameterType="uta.macross.entry.skill_type">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS id
+        </selectKey>
+        INSERT INTO SKILL_TYPE(pos,type) VALUES (#{pos},#{type})
     </insert>
     <select id="getSkillTypeByPos" parameterType="java.lang.String" resultType="java.util.HashMap">
         SELECT *

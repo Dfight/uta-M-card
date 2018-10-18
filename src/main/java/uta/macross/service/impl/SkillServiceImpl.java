@@ -3,6 +3,7 @@ package uta.macross.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uta.macross.dao.SkillDao;
+import uta.macross.entry.skill_type;
 import uta.macross.service.SkillService;
 
 import java.util.HashMap;
@@ -19,8 +20,8 @@ public class SkillServiceImpl implements SkillService {
         return skillDao.getAllSkill();
     }
 
-    public int addSkillType(HashMap<String, Object> map) {
-        return skillDao.addSkillType(map);
+    public int addSkillType(skill_type skill_type) {
+        return skillDao.addSkillType(skill_type);
     }
 
     public List<HashMap<String, Object>> getSkillTypeByPos(String pos) {

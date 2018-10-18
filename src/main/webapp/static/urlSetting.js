@@ -58,6 +58,8 @@ var strQueryClothingSinger = path+'/clothing/queryClothingSinger';
 
 //获取选中位置的技能类型
 var strGetSkillTypeByPos = path+'/skill/getSkillTypeByPos';
+//添加技能
+var strAddSkill = path +'/skill/addSkill';
 
 //添加卡
 var strAddCard = path + '/card/addCard';
