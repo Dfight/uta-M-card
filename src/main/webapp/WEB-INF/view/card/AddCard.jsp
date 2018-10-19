@@ -39,7 +39,7 @@
     </div>
 </div>
 <div class="col-md-6 " id="init">
-    <div class="loginDIV" style="margin-top: 35px;min-height: 385px">
+    <div class="loginDIV" style="margin-top: 35px;min-height: 260px">
         <div style="text-align: center">
             <h1>添加卡初期信息</h1>
             <div class="col-md-12" style="padding: 0px;">
@@ -84,15 +84,15 @@
                 </div>
             </div>
             <div class="col-md-12" style="padding-left: 15px;padding-right: 15px;margin-top: 10px">
-                <input type="text" class="form-control" id="cardInitCSkill" placeholder="初期C技能" style="margin-top: 10px">
-                <input type="text" class="form-control" id="cardInitASkill" placeholder="初期A技能" style="margin-top: 10px">
-                <input type="text" class="form-control" id="cardInitLSkill" placeholder="初期L技能" style="margin-top: 10px">
+                <%--<input type="text" class="form-control" id="cardInitCSkill" placeholder="初期C技能" style="margin-top: 10px">--%>
+                <%--<input type="text" class="form-control" id="cardInitASkill" placeholder="初期A技能" style="margin-top: 10px">--%>
+                <%--<input type="text" class="form-control" id="cardInitLSkill" placeholder="初期L技能" style="margin-top: 10px">--%>
             </div>
         </div>
     </div>
 </div>
 <div class="col-md-6" id="max">
-    <div class="loginDIV" style="margin-top: 0px;min-height: 385px">
+    <div class="loginDIV" style="margin-top: 0px;min-height: 260px">
         <div style="text-align: center">
             <h1> 添加卡满级信息</h1>
             <div class="col-md-12" style="padding: 0px;">
@@ -137,15 +137,42 @@
                 </div>
             </div>
             <div class="col-md-12" style="padding-left: 15px;padding-right: 15px;margin-top: 10px">
-                <input type="text" class="form-control" id="cardMaxCSkill" placeholder="满级C技能" style="margin-top: 10px">
-                <input type="text" class="form-control" id="cardMaxASkill" placeholder="满级A技能" style="margin-top: 10px">
-                <input type="text" class="form-control" id="cardMaxLSkill" placeholder="满级L技能" style="margin-top: 10px">
+                <%--<input type="text" class="form-control" id="cardMaxCSkill" placeholder="满级C技能" style="margin-top: 10px">--%>
+                <%--<input type="text" class="form-control" id="cardMaxASkill" placeholder="满级A技能" style="margin-top: 10px">--%>
+                <%--<input type="text" class="form-control" id="cardMaxLSkill" placeholder="满级L技能" style="margin-top: 10px">--%>
             </div>
         </div>
     </div>
 </div>
+<div class="col-md-6" id="skill">
+    <div class="loginDIV" style="margin-top: 20px;min-height: 220px">
+        <div class="col-md-6" style="margin-top: 20px">
+            <label class="col-md-4">Center</label>
+            <select class="form-control input-lg" id="initCenterSkillType" onchange="changeSkillType(1)" style="width: 65%"></select>
+        </div>
+        <div class="col-md-6" style="margin-top: 20px">
+                <select class="form-control input-lg" id="initCenterSkill" onchange=""></select>
+        </div>
+        <div class="col-md-6" style="margin-top: 20px">
+                <label class="col-md-4">Action</label>
+                <select class="form-control input-lg" id="initActionSkillType" onchange="changeSkillType(2)" style="width: 65%"></select>
+        </div>
+        <div class="col-md-6" style="margin-top: 20px">
+                <select class="form-control input-lg" id="initActionSkill" onchange=""></select>
+        </div>
+        <div class="col-md-6" style="margin-top: 20px">
+                <label class="col-md-4">Live</label>
+                <select class="form-control input-lg" id="initLiveSkillType" onchange="changeSkillType(3)" style="width: 65%"></select>
+        </div>
+        <div class="col-md-6" style="margin-top: 20px">
+                <select class="form-control input-lg" id="initLiveSkill" onchange=""></select>
+        </div>
+    </div>
+</div>
+</div>
 
 <div class="col-md-offset-3 col-md-6">
+
     <button style="margin-top: 30px;width: 33%" class="btn btn-lg btn-primary" onclick="window.location.href='/uta-macross/view/toMain'">返回首页</button>
     <button style="margin-top: 30px;width: 32%" class="btn btn-lg btn-primary" onclick="addCard()">添加新卡</button>
     <button style="margin-top: 30px;width: 33%" class="btn btn-lg btn-primary" onclick="empty()">清&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;空</button>
@@ -223,6 +250,65 @@
                 $("#singerSelect").html(strHtml);
             }
         })
+        $.ajax({
+            url:strGetSkillType,
+            dataType:'json',
+            async:false,
+            success:function(data){
+                var center="<option value='0'></option>";
+                var live="<option value='0'></option>";
+                var action="<option value='0'></option>";
+                for(i=0;i<data.res.length;i++){
+                    if (data.res[i].pos=="Center"){
+                        center+="<option value='"+data.res[i].id+"'>"+data.res[i].type+"</option>"
+                    }
+                    if (data.res[i].pos=="Live"){
+                        live+="<option value='"+data.res[i].id+"'>"+data.res[i].type+"</option>"
+                    }
+                    if (data.res[i].pos=="Action"){
+                        action+="<option value='"+data.res[i].id+"'>"+data.res[i].type+"</option>"
+                    }
+                }
+                $("#initCenterSkillType").html(center)
+                $("#initActionSkillType").html(action)
+                $("#initLiveSkillType").html(live)
+            }
+        });
+    }
+    function changeSkillType(x){
+        var skillType;
+        if(x==1){
+            skillType = $("#initCenterSkillType").val();
+        }else if(x==2){
+            skillType = $("#initActionSkillType").val();
+        }else if(x==3){
+            skillType = $("#initLiveSkillType").val();
+        }
+        $.ajax({
+            url: strGetSkillByType,
+            dataType: 'json',
+            async: false,
+            data:{type:skillType},
+            success: function (data) {
+                var strHtml = "<option value='0'></option>";
+                if (x==1){
+                    for(i=0;i<data.res.length;i++){
+                        strHtml+="<option value='"+data.res[i].skill_ID+"'>"+data.res[i].skill_C+"</option>";
+                    }
+                    $("#initCenterSkill").html(strHtml)
+                }else if(x==2){
+                    for(i=0;i<data.res.length;i++){
+                        strHtml+="<option value='"+data.res[i].skill_ID+"'>"+data.res[i].skill_C+"</option>";
+                    }
+                    $("#initActionSkill").html(strHtml)
+                }else if(x==3){
+                    for(i=0;i<data.res.length;i++){
+                        strHtml+="<option value='"+data.res[i].skill_ID+"'>"+data.res[i].skill_C+"</option>";
+                    }
+                    $("#initLiveSkill").html(strHtml)
+                }
+            }
+        });
     }
     function initStar(num) {
         $("#initStar i").removeClass("fa-star");
@@ -315,14 +401,11 @@
             alert("请添加满级卡面信息");
             return;
         }
-        if($("#cardInitASkill").val()==null||$("#cardInitASkill").val()==""||$("#cardInitCSkill").val()==null||$("#cardInitCSkill").val()==""||$("#cardInitLSkill").val()==null||$("#cardInitLSkill").val()==""){
-            alert("请添加初期技能信息");
+        if($("#initCenterSkill").val()==0||$("#initLiveSkill").val()==0||$("#initActionSkill").val()==0||$("#initCenterSkill").val()==null||$("#initLiveSkill").val()==null||$("#initActionSkill").val()==null){
+            alert("请添加技能信息");
             return;
         }
-        if($("#cardMaxASkill").val()==null||$("#cardMaxASkill").val()==""||$("#cardMaxCSkill").val()==null||$("#cardMaxCSkill").val()==""||$("#cardMaxLSkill").val()==null||$("#cardMaxLSkill").val()==""){
-            alert("请添加满级技能信息");
-            return;
-        }
+
 
         var singer = new Array();
         $("input[type='checkbox']:checked").each(function(){
@@ -339,9 +422,9 @@
             initSupport : $("#cardInitSupport").val(),
             initFoldWave : $("#cardInitFoldWave").val(),
             initLuck : $("#cardInitLuck").val(),
-            initASkill : $("#cardInitASkill").val(),
-            initCSkill : $("#cardInitCSkill").val(),
-            initLSkill : $("#cardInitLSkill").val()
+            initASkill : $("#initActionSkill").val(),
+            initCSkill : $("#initCenterSkill").val(),
+            initLSkill : $("#initLiveSkill").val()
         }
         var max = {
             maxIMG : $("#cardMaxIMG").val(),
@@ -354,9 +437,9 @@
             maxSupport : $("#cardMaxSupport").val(),
             maxFoldWave : $("#cardMaxFoldWave").val(),
             maxLuck : $("#cardMaxLuck").val(),
-            maxASkill : $("#cardMaxASkill").val(),
-            maxCSkill : $("#cardMaxCSkill").val(),
-            maxLSkill : $("#cardMaxLSkill").val()
+            maxASkill : $("#initActionSkill").val(),
+            maxCSkill : $("#initCenterSkill").val(),
+            maxLSkill : $("#initLiveSkill").val()
         }
         var data = {
             cardName:$("#addCardName").val(),
@@ -368,7 +451,6 @@
             init :  JSON.stringify(init),
             max : JSON.stringify(max)
         };
-        console.log(data);
         $.ajax({
             url:strAddCard,
             dataType:'json',
