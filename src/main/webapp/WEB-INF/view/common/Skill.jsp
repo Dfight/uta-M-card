@@ -183,8 +183,9 @@
                     strHtml+="<option value='"+data.res[i].id+"'>"+data.res[i].type+"</option>"
                 }
                 strHtml+="<option value='99999'>其他</option>"
-                console.log(strHtml)
                 $("#Skill_Type").html(strHtml);
+                $("#otherType").val("");
+                $("#otherType").css('visibility','hidden');
             }
         });
     }
