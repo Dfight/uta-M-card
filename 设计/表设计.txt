@@ -46,7 +46,7 @@ id 卡面id 作品id
 id 卡面id 衣服id 飞机id    衣服id和飞机id不能同为空
 
 技能表					skill
-id 类型	等级	日语介绍	中文介绍
+id 类型	等级	日语介绍 日语满级	中文介绍 中文满级
 
 技能类型                skill_type
 id 位置 类型

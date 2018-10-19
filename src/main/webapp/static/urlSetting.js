@@ -56,8 +56,12 @@ var strQueryAllClothing = path+'/clothing/queryAllClothing';
 //获取衣服对应歌姬
 var strQueryClothingSinger = path+'/clothing/queryClothingSinger';
 
+//获取所有技能类型
+var strGetSkillType = path +'/skill/getSkillType';
 //获取选中位置的技能类型
 var strGetSkillTypeByPos = path+'/skill/getSkillTypeByPos';
+//根据类型获得技能
+var strGetSkillByType = path +'/skill/getSkillByType';
 //添加技能
 var strAddSkill = path +'/skill/addSkill';
 

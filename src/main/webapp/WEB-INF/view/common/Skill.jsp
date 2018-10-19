@@ -53,8 +53,10 @@
             <div class="col-md-8" style="padding-right: 0px">
                 <input type="text" class="form-control input-lg" id="otherType" placeholder="类型" style="visibility: hidden">
             </div>
-            <input type="text" class="form-control input-lg" id="Skill_J" placeholder="技能描述(日语)" style="margin-top: 150px">
-            <input type="text" class="form-control input-lg" id="Skill_C" placeholder="技能描述(中文)(可不填)" style="margin-top: 30px">
+            <input type="text" class="form-control input-lg" id="Skill_J_init" placeholder="初期技能描述(日语)" style="margin-top: 150px">
+            <input type="text" class="form-control input-lg" id="Skill_J_max" placeholder="满级技能描述(日语)" style="margin-top: 20px">
+            <input type="text" class="form-control input-lg" id="Skill_C_init" placeholder="初期技能描述(中文)(可不填)" style="margin-top: 20px">
+            <input type="text" class="form-control input-lg" id="Skill_C_max" placeholder="满级技能描述(中文)(可不填)" style="margin-top: 20px">
             <button style="margin-top: 30px;width: 110px" class="btn btn-lg btn-primary" onclick="window.location.href='/uta-macross/view/toMain'">返回首页</button>
             <button style="margin-top: 30px;width: 110px" class="btn btn-lg btn-primary" onclick="addSkill()">添加技能</button>
             <button style="margin-top: 30px;width: 110px" class="btn btn-lg btn-primary" onclick="  empty()">清&nbsp;&nbsp;&nbsp;&nbsp;空</button>
@@ -63,71 +65,14 @@
     <div class="loginDIV" style="margin-top: 35px;display: none" id="editSkill">
         <div style="text-align: center">
             <div style="text-align: center" class="col-md-8 col-md-offset-2">
-                <select class="form-control" id="editSelect" onchange="changeSelect()">
-                </select>
-                <input type="text" class="form-control input-lg" id="editSingerName" placeholder="歌姬姓名" style="margin-top: 20px">
-                <input type="text" class="form-control input-lg" id="editSingerIMG" placeholder="歌姬图片(圆)" style="margin-top: 20px">
-                <input type="text" class="form-control input-lg" id="editSingerIMG1" placeholder="歌姬图片(方)" style="margin-top: 20px">
-                <select class="form-control input-lg" id="opusSelect1" style="margin-top: 20px">
-                </select>
-                <button style="margin-top: 33px;width: 110px" class="btn btn-lg btn-primary" onclick="window.location.href='/uta-macross/view/toMain'">返回首页</button>
-                <button style="margin-top: 33px;width: 110px" class="btn btn-lg btn-primary" onclick="editSkill()">修改技能</button>
+
             </div>
         </div>
     </div>
 
 </div>
 <script type="text/javascript">
-    var allOpus;
-    var allSinger;
-    window.onload=function(){
-        $.ajax({
-            url:strQueryAllSinger,
-            dataType:'json',
-            async:false,
-            success:function(data){
-                allSinger =data.res;
-                var strHtml="<option value='0'></option>";
-                for(i=0;i<allSinger.length;i++){
-                    strHtml+="<option value='"+allSinger[i].singer_ID+"'>"+allSinger[i].singer_Name+"</option>"
-                }
-                $("#editSelect").html(strHtml);
-            }
-        });
-        $.ajax({
-            url:strQueryAllOpus,
-            dataType:'json',
-            async:false,
-            success:function(data){
-                allOpus =data.res;
-                var strHtml="<option value='0'></option>";
-                for(i=0;i<allOpus.length;i++){
-                    strHtml+="<option value='"+allOpus[i].opus_ID+"'>"+allOpus[i].opus_Name+"</option>"
-                }
-                $("#opusSelect").html(strHtml);
-                $("#opusSelect1").html(strHtml);
-            }
-        });
-    }
-    function changeSelect(){
-        var a = $("#editSelect option:selected").val();
-        for(i=0;i<allSinger.length;i++) {
-            if (a == allSinger[i].singer_ID) {
-                $("#editSingerName").val(allSinger[i].singer_Name);
-                $("#editSingerIMG").val(allSinger[i].singer_IMG);
-                $("#editSingerIMG1").val(allSinger[i].singer_IMG1);
-                $.ajax({
-                    url: strGetOpusBySingerID,
-                    dataType: 'json',
-                    data: {id: a},
-                    async: false,
-                    success: function (data) {
-                        $("#opusSelect1").val(data.Opus_ID);
-                    }
-                })
-            }
-        }
-    }
+
     function add(){
         $("#addTab").removeClass("tabDiv");
         $("#editTab").removeClass("tabDiv-sel");
@@ -156,8 +101,10 @@
                 type:$("#Skill_Type option:selected").val(),
                 otherType:$("#otherType").val(),
                 lv:$("#Skill_LV option:selected").text(),
-                skill_J:$("#Skill_J").val(),
-                skill_C:$("#Skill_C").val(),
+                skill_J:$("#Skill_J_init").val(),
+                skill_J_max:$("#Skill_J_max").val(),
+                skill_C:$("#Skill_C_init").val(),
+                skill_C_max:$("#Skill_C_max").val(),
             },
             async: false,
             success: function (data) {

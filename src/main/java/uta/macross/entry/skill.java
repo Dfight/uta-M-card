@@ -5,17 +5,37 @@ public class skill {
     private int Skill_Type;
     private String Skill_LV;
     private String Skill_J;
+    private String Skill_J_max;
     private String Skill_C;
+    private String Skill_C_max;
 
     public skill() {
     }
 
-    public skill(int skill_ID, int skill_Type, String skill_LV, String skill_J, String skill_C) {
+    public skill(int skill_ID, int skill_Type, String skill_LV, String skill_J, String skill_J_max, String skill_C, String skill_C_max) {
         Skill_ID = skill_ID;
         Skill_Type = skill_Type;
         Skill_LV = skill_LV;
         Skill_J = skill_J;
+        Skill_J_max = skill_J_max;
         Skill_C = skill_C;
+        Skill_C_max = skill_C_max;
+    }
+
+    public String getSkill_J_max() {
+        return Skill_J_max;
+    }
+
+    public void setSkill_J_max(String skill_J_max) {
+        Skill_J_max = skill_J_max;
+    }
+
+    public String getSkill_C_max() {
+        return Skill_C_max;
+    }
+
+    public void setSkill_C_max(String skill_C_max) {
+        Skill_C_max = skill_C_max;
     }
 
     public int getSkill_ID() {
