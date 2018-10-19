@@ -32,6 +32,9 @@ public class SkillController {
         JSONObject jsonObject =new JSONObject();
         HashMap<String,Object> map = new HashMap<String,Object>();
         skill_type skill_type = new skill_type();
+        if(skill_C.equals("") || skill_C == null){
+            skill_C = skill_J;
+        }
         skill_type.setPos(pos);
         skill_type.setType(otherType);
         map.put("Skill_LV",lv);
