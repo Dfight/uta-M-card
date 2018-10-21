@@ -49,9 +49,6 @@
                     <select id="fighterSelect" class="row collapse in form-control" onchange="fighterChange()"></select>
                     <div id="cfCelect"></div>
                 </div>
-
-
-
             </div>
 
 
@@ -236,7 +233,7 @@
                 allOpus =data.res;
                 var strHtml="";
                 for(i=0;i<allOpus.length;i++){
-                    strHtml+="<div value='"+allOpus[i].opus_ID+"' class='col-md-6' onclick='gray(this)' ><img src='"+img+allOpus[i].opus_IMG+"' style='width: 100%'></div>"
+                    strHtml+="<div value='"+allOpus[i].opus_ID+"' class='col-md-6' onclick='gray(this)' style='margin-bottom: -30px'><img src='"+img+allOpus[i].opus_IMG+"' style='width: 100%;'></div>"
                 }
                 $("#opusSelect").html(strHtml);
             }

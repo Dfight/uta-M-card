@@ -47,6 +47,16 @@ public class Card_uController {
         }else {
              card = card_uService.getCardF(id);
         }
+        HashMap<String,Object> skill;
+        skill = card_uService.getSkillByType((String) card.get("Card_I_C_S"));
+        card.put("Card_I_C_S",skill.get("Skill_C"));
+        card.put("Card_M_C_S",skill.get("Skill_C_max"));
+        skill = card_uService.getSkillByType((String) card.get("Card_I_L_S"));
+        card.put("Card_I_L_S",skill.get("Skill_C"));
+        card.put("Card_M_L_S",skill.get("Skill_C_max"));
+        skill = card_uService.getSkillByType((String) card.get("Card_I_A_S"));
+        card.put("Card_I_A_S",skill.get("Skill_C"));
+        card.put("Card_M_A_S",skill.get("Skill_C_max"));
         List<HashMap<String,Object>> singer=card_uService.getSingerByCard(id);
         jsonObject.put("card",card);
         jsonObject.put("singer",singer);

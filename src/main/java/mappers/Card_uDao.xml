@@ -112,4 +112,9 @@
         where singer.Singer_ID=singer_card.Singer_Card_SID
         AND singer_card.Singer_Card_CID = #{id}
     </select>
+    <select id="getSkillByType" resultType="java.util.HashMap">
+        SELECT Skill_C,Skill_C_max
+        FROM skill
+        where Skill_ID = #{type}
+    </select>
 </mapper>

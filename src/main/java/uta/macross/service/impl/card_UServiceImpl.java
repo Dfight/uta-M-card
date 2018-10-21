@@ -34,4 +34,8 @@ public class card_UServiceImpl implements Card_uService {
     public List<HashMap<String,Object>> getSingerByCard(Integer id) {
         return card_uDao.getSingerByCard(id);
     }
+
+    public HashMap<String,Object> getSkillByType(String type) {
+        return card_uDao.getSkillByType(type);
+    }
 }

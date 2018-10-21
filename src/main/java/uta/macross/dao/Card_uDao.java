@@ -27,4 +27,6 @@ public interface Card_uDao {
     public HashMap<String,Object> getCardC(@Param("id") Integer id);
     //获取歌姬byCard
     public List<HashMap<String,Object>> getSingerByCard(@Param("id") Integer id);
+    //获取技能详情By 类型
+    public HashMap<String,Object> getSkillByType(@Param("type") String type);
 }
