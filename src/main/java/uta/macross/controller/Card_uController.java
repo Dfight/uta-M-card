@@ -21,7 +21,7 @@ public class Card_uController {
     public Card_uService card_uService;
     @RequestMapping(value = "/getAllCard",produces = "application/json;charset=utf-8")
     @ResponseBody
-    public String getAllCard(int i,int star,@RequestParam("opus[]") List<Integer>  opus,@RequestParam("attr[]") List<Integer>  attr,@RequestParam("singer[]") List<Integer>  singer,Integer clothing,Integer fighter) {
+    public String getAllCard(int i,int star,@RequestParam("opus[]") List<Integer>  opus,@RequestParam("attr[]") List<Integer>  attr,@RequestParam("singer[]") List<Integer>  singer,Integer clothing,Integer fighter,Integer skillCenter,Integer skillLive,Integer skillAction) {
 
         int start = i*10-10;
         int end = i*10;
@@ -31,7 +31,7 @@ public class Card_uController {
 //        Integer clothing=0;
 //      Integer star=0;
 //        List<Integer> singer= new ArrayList<Integer>();
-        List<HashMap<String,Object>> list = card_uService.getAllCard(attr,opus,fighter,clothing,star,start,end,singer);
+        List<HashMap<String,Object>> list = card_uService.getAllCard(attr,opus,fighter,clothing,star,start,end,singer,skillCenter,skillLive,skillAction);
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("res",list);
         return jsonObject.toJSONString();

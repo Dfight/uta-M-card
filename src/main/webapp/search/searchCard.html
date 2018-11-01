@@ -51,6 +51,24 @@
                 </div>
             </div>
 
+            <div class="col-md-12 menu">
+                <h4><a data-toggle="collapse" data-target="#CFSelect">技能</a></h4>
+                <div class="col-md-12" style="margin-left: 15px;padding-left: 3px;padding-right: 3px">
+                    <label style="margin-left: -30px;" class="col-md-4">Center</label>
+                    <div class="col-md-8" style="padding-right: 0px;margin-left: 10px">
+                        <select id="skillCenterSelect" class="row collapse in form-control "></select>
+                    </div>
+                    <label style="margin-left: -30px;" class="col-md-4">Action</label>
+                    <div class="col-md-8" style="padding-right: 0px;margin-left: 10px">
+                        <select id="skillActionSelect" class="row collapse in form-control "></select>
+                    </div>
+                    <label style="margin-left: -30px;" class="col-md-4">Live</label>
+                    <div class="col-md-8" style="padding-right: 0px;margin-left: 10px">
+                        <select id="skillLiveSelect" class="row collapse in form-control"></select>
+                    </div>
+
+                </div>
+            </div>
 
             <div class="col-md-12 ">
                 <button  class="btn btn-primary btn-lg" onclick="search()">筛选</button>
@@ -263,7 +281,31 @@
                 }
                 $("#singerSelect").html(strHtml);
             }
-        })
+        });
+
+        $.ajax({
+            url:strGetSkillType,
+            dataType:'json',
+            async:false,
+            success:function(data){
+                var strAction="<option value='0'></option>";
+                var strLive="<option value='0'></option>";
+                var strCenter="<option value='0'></option>";
+                for(i=0;i<data.res.length;i++){
+                    if (data.res[i].pos=="Center"){
+                        strCenter+="<option value='"+data.res[i].id+"'>"+data.res[i].type+"</option>"
+                    }else if (data.res[i].pos=="Live"){
+                        strLive+="<option value='"+data.res[i].id+"'>"+data.res[i].type+"</option>"
+                    }else if (data.res[i].pos=="Action"){
+                        strAction+="<option value='"+data.res[i].id+"'>"+data.res[i].type+"</option>"
+                    }
+
+                }
+                $("#skillActionSelect").html(strAction);
+                $("#skillCenterSelect").html(strCenter);
+                $("#skillLiveSelect").html(strLive);
+            }
+        });
         search()
     }
 
@@ -304,6 +346,9 @@
         })
         var clothing = $("#clothingSelect").val();
         var fighter = $("#fighterSelect").val();
+        var skillCenter = $("#skillCenterSelect").val();
+        var skillLive = $("#skillLiveSelect").val();
+        var skillAction = $("#skillActionSelect").val();
 
         if(opus.length==0||attr.length==0||singer.length==0){
             example1.items = []
@@ -319,7 +364,10 @@
                 attr:attr,
                 singer:singer,
                 clothing:clothing,
-                fighter:fighter
+                fighter:fighter,
+                skillCenter:skillCenter,
+                skillLive:skillLive,
+                skillAction:skillAction
             },
             success:function(data){
                 example1.items = []

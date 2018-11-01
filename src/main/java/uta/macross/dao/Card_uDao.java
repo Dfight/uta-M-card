@@ -18,7 +18,10 @@ public interface Card_uDao {
                                                     @Param("star") Integer star,
                                                     @Param("start") Integer start,
                                                     @Param("end") Integer end,
-                                                    @Param("singer") List<Integer> singer);
+                                                    @Param("singer") List<Integer> singer,
+                                                    @Param("skillCenter") Integer skillCenter,
+                                                    @Param("skillLive")  Integer skillLive,
+                                                    @Param("skillAction")  Integer skillAction);
     //获取卡类型
     public cardClothingFighter getCardType(@Param("id") Integer id);
     //获取卡(飞机)

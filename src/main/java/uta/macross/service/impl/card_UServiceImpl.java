@@ -15,8 +15,18 @@ import java.util.Map;
 public class card_UServiceImpl implements Card_uService {
     @Autowired
     public Card_uDao card_uDao;
-    public List<HashMap<String, Object>> getAllCard(List<Integer> attr, List<Integer> opus, Integer fighter, Integer clothing, Integer star, Integer start, Integer end, List<Integer> singer) {
-        return card_uDao.getAllCard(attr,opus,fighter,clothing,star,start,end,singer);
+    public List<HashMap<String, Object>> getAllCard(List<Integer> attr,
+                                                    List<Integer> opus,
+                                                    Integer fighter,
+                                                    Integer clothing,
+                                                    Integer star,
+                                                    Integer start,
+                                                    Integer end,
+                                                    List<Integer> singer,
+                                                    Integer skillCenter,
+                                                    Integer skillLive,
+                                                    Integer skillAction) {
+        return card_uDao.getAllCard(attr,opus,fighter,clothing,star,start,end,singer,skillCenter,skillLive,skillAction);
     }
 
     public cardClothingFighter getCardType(Integer id) {

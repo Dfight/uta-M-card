@@ -56,6 +56,15 @@
         <if test="star!=0">
             AND (ci.Card_I_Star = #{star} or cm.Card_M_Star = #{star})
         </if>
+        <if test="skillCenter!=0">
+            AND ci.Card_I_C_S in (select Skill_ID from skill where skill_Type = #{skillCenter})
+        </if>
+        <if test="skillLive!=0">
+            AND ci.Card_I_L_S in (select Skill_ID from skill where skill_Type = #{skillLive})
+        </if>
+        <if test="skillAction!=0">
+            AND ci.Card_I_A_S in (select Skill_ID from skill where skill_Type = #{skillAction})
+        </if>
         GROUP BY c.Card_ID) a
         LIMIT #{start},#{end}
     </select>

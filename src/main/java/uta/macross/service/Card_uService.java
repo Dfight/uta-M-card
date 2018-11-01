@@ -16,7 +16,10 @@ public interface Card_uService {
                                                      Integer star,
                                                      Integer start,
                                                      Integer end,
-                                                     List<Integer> singer);
+                                                     List<Integer> singer,
+                                                     Integer skillCenter,
+                                                     Integer skillLive,
+                                                     Integer skillAction);
     //获取卡类型
     public cardClothingFighter getCardType(@Param("id") Integer id);
     //获取卡(飞机)
