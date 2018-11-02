@@ -19,6 +19,26 @@ public class cardMax {
     public cardMax() {
     }
 
+    @Override
+    public String toString() {
+        return "cardMax{" +
+                "Card_ID=" + Card_ID +
+                ", Card_M_Star=" + Card_M_Star +
+                ", Card_M_IMG='" + Card_M_IMG + '\'' +
+                ", Card_M_Total=" + Card_M_Total +
+                ", Card_M_Soul=" + Card_M_Soul +
+                ", Card_M_Voice=" + Card_M_Voice +
+                ", Card_M_Charm=" + Card_M_Charm +
+                ", Card_M_Life=" + Card_M_Life +
+                ", Card_M_Support=" + Card_M_Support +
+                ", Card_M_FoldWave=" + Card_M_FoldWave +
+                ", Card_M_Luck=" + Card_M_Luck +
+                ", Card_M_C_S='" + Card_M_C_S + '\'' +
+                ", Card_M_A_S='" + Card_M_A_S + '\'' +
+                ", Card_M_L_S='" + Card_M_L_S + '\'' +
+                '}';
+    }
+
     public int getCard_ID() {
         return Card_ID;
     }

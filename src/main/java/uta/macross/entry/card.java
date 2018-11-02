@@ -7,6 +7,14 @@ public class card {
     public card() {
     }
 
+    @Override
+    public String toString() {
+        return "card{" +
+                "Card_ID=" + Card_ID +
+                ", Card_Name='" + Card_Name + '\'' +
+                '}';
+    }
+
     public card(int card_ID, String card_Name) {
         Card_ID = card_ID;
         Card_Name = card_Name;

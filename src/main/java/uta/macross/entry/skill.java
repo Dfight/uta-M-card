@@ -12,6 +12,19 @@ public class skill {
     public skill() {
     }
 
+    @Override
+    public String toString() {
+        return "skill{" +
+                "Skill_ID=" + Skill_ID +
+                ", Skill_Type=" + Skill_Type +
+                ", Skill_LV='" + Skill_LV + '\'' +
+                ", Skill_J='" + Skill_J + '\'' +
+                ", Skill_J_max='" + Skill_J_max + '\'' +
+                ", Skill_C='" + Skill_C + '\'' +
+                ", Skill_C_max='" + Skill_C_max + '\'' +
+                '}';
+    }
+
     public skill(int skill_ID, int skill_Type, String skill_LV, String skill_J, String skill_J_max, String skill_C, String skill_C_max) {
         Skill_ID = skill_ID;
         Skill_Type = skill_Type;

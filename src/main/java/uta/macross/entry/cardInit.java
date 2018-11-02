@@ -19,6 +19,26 @@ public class cardInit {
     public cardInit() {
     }
 
+    @Override
+    public String toString() {
+        return "cardInit{" +
+                "Card_ID=" + Card_ID +
+                ", Card_I_Star=" + Card_I_Star +
+                ", Card_I_IMG='" + Card_I_IMG + '\'' +
+                ", Card_I_Total=" + Card_I_Total +
+                ", Card_I_Soul=" + Card_I_Soul +
+                ", Card_I_Voice=" + Card_I_Voice +
+                ", Card_I_Charm=" + Card_I_Charm +
+                ", Card_I_Life=" + Card_I_Life +
+                ", Card_I_Support=" + Card_I_Support +
+                ", Card_I_FoldWave=" + Card_I_FoldWave +
+                ", Card_I_Luck=" + Card_I_Luck +
+                ", Card_I_C_S='" + Card_I_C_S + '\'' +
+                ", Card_I_A_S='" + Card_I_A_S + '\'' +
+                ", Card_I_L_S='" + Card_I_L_S + '\'' +
+                '}';
+    }
+
     public cardInit(int card_ID, int card_I_Star, String card_I_IMG, int card_I_Total, int card_I_Soul, int card_I_Voice, int card_I_Charm, int card_I_Life, int card_I_Support, int card_I_FoldWave, int card_I_Luck, String card_I_C_S, String card_I_A_S, String card_I_L_S) {
         Card_ID = card_ID;
         Card_I_Star = card_I_Star;
