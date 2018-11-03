@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="uta.macross.dao.Magic_Dao">
+
+    <select id="existCardByName" resultType="uta.macross.entry.card" parameterType="java.lang.String">
+        SELECT * from card WHERE Card_Name = #{name}
+    </select>
+    <select id="getAttrIdByAttrName" resultType="uta.macross.entry.attribute" parameterType="java.lang.String">
+        SELECT * from attribute where Attr_Name = #{name}
+    </select>
+    <select id="existUnlockByName" resultType="uta.macross.entry.unlock" parameterType="java.lang.String">
+        SELECT * from unlock WHERE Card_Name = #{name}
+    </select>
+    <insert id="addUnlock" parameterType="uta.macross.entry.unlock">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="U_ID">
+            SELECT LAST_INSERT_ID() AS U_ID
+        </selectKey>
+        INSERT INTO unlock(U_Name) VALUES (#{U_Name})
+    </insert>
+</mapper>

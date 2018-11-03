@@ -3,12 +3,16 @@ package uta.macross.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import us.codecraft.webmagic.Spider;
 import uta.macross.entry.*;
 import uta.macross.service.CardService;
+import uta.macross.util.cardPageProcessor;
+import uta.macross.util.cardPiprline;
 
 import java.util.HashMap;
 import java.util.List;
@@ -131,5 +135,22 @@ public class CardController {
         cardMax.setCard_M_C_S(maxCSkill);
         cardMax.setCard_M_L_S(maxLSkill);
         return cardMax;
+    }
+
+    @Qualifier("cardPiprline")
+    @Autowired
+    private cardPiprline cardPiprline ;
+
+
+    @RequestMapping("/webmagic")
+    @ResponseBody
+    public String webmagic(){
+        Spider.create(new cardPageProcessor()).
+                addUrl("https://歌マクロス.gamematome.jp/game/977/wiki/最新情報_ガチャ情報")
+                //addUrl("https://歌マクロス.gamematome.jp/game/977/wiki/プレート_Welcome%20to%20Walküre%20World")
+                .addPipeline(cardPiprline)
+                .thread(5)
+                .run();
+       return null;
     }
 }

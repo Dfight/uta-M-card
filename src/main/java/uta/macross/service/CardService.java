@@ -19,4 +19,6 @@ public interface CardService {
     public int addCardMax(cardMax cardMax);
     //添加歌姬相性
     public int addCardSinger(singer_card singer_card);
+
+
 }

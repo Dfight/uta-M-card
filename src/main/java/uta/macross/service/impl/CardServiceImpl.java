@@ -10,6 +10,7 @@ import uta.macross.service.CardService;
 public class CardServiceImpl implements CardService {
     @Autowired
     public CardDao cardDao;
+
     public int addCard(card card) {
         return cardDao.addCard(card);
     }
@@ -41,4 +42,10 @@ public class CardServiceImpl implements CardService {
     public int addCardSinger(singer_card singer_card) {
         return cardDao.addCardSinger(singer_card);
     }
+
+
+
+
+
+
 }

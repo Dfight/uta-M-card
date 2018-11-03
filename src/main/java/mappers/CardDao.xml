@@ -90,4 +90,5 @@
     <insert id="addCardSinger" parameterType="uta.macross.entry.singer_card">
         INSERT INTO singer_card(Singer_Card_SID,Singer_Card_CID) VALUES (#{Singer_Card_SID},#{Singer_Card_CID})
     </insert>
+
 </mapper>
