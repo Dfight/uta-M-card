@@ -3,7 +3,10 @@ package uta.macross.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uta.macross.dao.Card_uDao;
+import uta.macross.dao.Magic_Dao;
+import uta.macross.dao.OpusDao;
 import uta.macross.entry.cardClothingFighter;
+import uta.macross.entry.opus;
 import uta.macross.service.Card_uService;
 
 
@@ -15,6 +18,10 @@ import java.util.Map;
 public class card_UServiceImpl implements Card_uService {
     @Autowired
     public Card_uDao card_uDao;
+    @Autowired
+    public OpusDao opusDao;
+    @Autowired
+    public Magic_Dao magic_dao;
     public List<HashMap<String, Object>> getAllCard(List<Integer> attr,
                                                     List<Integer> opus,
                                                     Integer fighter,
@@ -26,6 +33,10 @@ public class card_UServiceImpl implements Card_uService {
                                                     Integer skillCenter,
                                                     Integer skillLive,
                                                     Integer skillAction) {
+        int countOpus = opusDao.getCountOpus();
+        if (countOpus-1==opus.size()){
+            opus.add(  magic_dao.getToDoOpus().getOpus_ID());
+        }
         return card_uDao.getAllCard(attr,opus,fighter,clothing,star,start,end,singer,skillCenter,skillLive,skillAction);
     }
 

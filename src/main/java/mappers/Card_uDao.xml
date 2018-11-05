@@ -4,7 +4,70 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="uta.macross.dao.Card_uDao">
     <select id="getAllCard" parameterType="java.util.Map" resultType="java.util.HashMap">
-      select * from (
+      <!--select * from (-->
+        <!--select-->
+        <!--c.Card_ID,c.Card_Name,-->
+        <!--ci.Card_I_Total,ci.Card_I_IMG,ci.Card_I_Star,-->
+        <!--cm.Card_M_Total,cm.Card_M_IMG,-->
+        <!--a.Attr_IMG,a.Attr_Name,-->
+        <!--o.Opus_Name-->
+        <!--from-->
+            <!--card c,-->
+            <!--card_init ci,-->
+            <!--card_max cm,-->
+            <!--attribute a,-->
+            <!--attr_card ac,-->
+            <!--opus o,-->
+            <!--opus_card oc,-->
+            <!--card_clothing_fighter ccf,-->
+            <!--singer_card sc-->
+        <!--where c.Card_ID=ci.Card_ID-->
+            <!--AND c.Card_ID = oc.O_Card_CID-->
+            <!--AND c.Card_ID = ccf.C_C_F_Card-->
+            <!--AND c.Card_ID=cm.Card_ID-->
+            <!--AND oc.O_Card_OID=o.Opus_ID-->
+            <!--AND ac.AC_CID = c.Card_ID-->
+            <!--AND c.Card_ID = sc.Singer_Card_CID-->
+            <!--AND a.Attr_ID = ac.AC_AID-->
+            <!--<if test="attr.size()!=0">-->
+                <!--AND ac.AC_AID in-->
+                <!--<foreach collection="attr" index="index" item="item" open="(" close=")" separator=",">-->
+                    <!--#{item}-->
+                <!--</foreach>-->
+            <!--</if>-->
+            <!--<if test="opus.size()!=0">-->
+                <!--AND oc.O_Card_OID in-->
+                <!--<foreach collection="opus" index="index" item="item" open="(" close=")" separator=",">-->
+                    <!--#{item}-->
+                <!--</foreach>-->
+            <!--</if>-->
+        <!--<if test="singer.size()!=0">-->
+            <!--AND sc.Singer_Card_SID in-->
+            <!--<foreach collection="singer" index="index" item="item" open="(" close=")" separator=",">-->
+                <!--#{item}-->
+            <!--</foreach>-->
+        <!--</if>-->
+        <!--<if test="fighter!=0">-->
+            <!--AND ccf.C_C_F_Fighter = #{fighter}-->
+        <!--</if>-->
+        <!--<if test="clothing!=0">-->
+            <!--AND ccf.C_C_F_Clothing = #{clothing}-->
+        <!--</if>-->
+        <!--<if test="star!=0">-->
+            <!--AND (ci.Card_I_Star = #{star} or cm.Card_M_Star = #{star})-->
+        <!--</if>-->
+        <!--<if test="skillCenter!=0">-->
+            <!--AND ci.Card_I_C_S in (select Skill_ID from skill where skill_Type = #{skillCenter})-->
+        <!--</if>-->
+        <!--<if test="skillLive!=0">-->
+            <!--AND ci.Card_I_L_S in (select Skill_ID from skill where skill_Type = #{skillLive})-->
+        <!--</if>-->
+        <!--<if test="skillAction!=0">-->
+            <!--AND ci.Card_I_A_S in (select Skill_ID from skill where skill_Type = #{skillAction})-->
+        <!--</if>-->
+        <!--GROUP BY c.Card_ID) a-->
+        <!--LIMIT #{start},#{end}-->
+        select * from (
         select
         c.Card_ID,c.Card_Name,
         ci.Card_I_Total,ci.Card_I_IMG,ci.Card_I_Star,
@@ -12,35 +75,37 @@
         a.Attr_IMG,a.Attr_Name,
         o.Opus_Name
         from
-            card c,
-            card_init ci,
-            card_max cm,
-            attribute a,
-            attr_card ac,
-            opus o,
-            opus_card oc,
-            card_clothing_fighter ccf,
-            singer_card sc
+        card c,
+        card_init ci,
+        card_max cm,
+        attribute a,
+        attr_card ac,
+        opus o,
+        opus_card oc,
+        singer_card sc,
+        un_lock ul,
+        card_unlock cu
         where c.Card_ID=ci.Card_ID
-            AND c.Card_ID = oc.O_Card_CID
-            AND c.Card_ID = ccf.C_C_F_Card
-            AND c.Card_ID=cm.Card_ID
-            AND oc.O_Card_OID=o.Opus_ID
-            AND ac.AC_CID = c.Card_ID
-            AND c.Card_ID = sc.Singer_Card_CID
-            AND a.Attr_ID = ac.AC_AID
-            <if test="attr.size()!=0">
-                AND ac.AC_AID in
-                <foreach collection="attr" index="index" item="item" open="(" close=")" separator=",">
-                    #{item}
-                </foreach>
-            </if>
-            <if test="opus.size()!=0">
-                AND oc.O_Card_OID in
-                <foreach collection="opus" index="index" item="item" open="(" close=")" separator=",">
-                    #{item}
-                </foreach>
-            </if>
+        AND c.Card_ID = oc.O_Card_CID
+        AND c.Card_ID=cm.Card_ID
+        AND oc.O_Card_OID=o.Opus_ID
+        AND ac.AC_CID = c.Card_ID
+        AND c.Card_ID = sc.Singer_Card_CID
+        AND a.Attr_ID = ac.AC_AID
+        AND ul.U_ID = cu.U_ID
+        AND cu.C_ID = c.Card_ID
+        <if test="attr.size()!=0">
+            AND ac.AC_AID in
+            <foreach collection="attr" index="index" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="opus.size()!=0">
+            AND oc.O_Card_OID in
+            <foreach collection="opus" index="index" item="item" open="(" close=")" separator=",">
+                #{item}
+            </foreach>
+        </if>
         <if test="singer.size()!=0">
             AND sc.Singer_Card_SID in
             <foreach collection="singer" index="index" item="item" open="(" close=")" separator=",">
@@ -48,10 +113,10 @@
             </foreach>
         </if>
         <if test="fighter!=0">
-            AND ccf.C_C_F_Fighter = #{fighter}
+            AND ul.U_Fighter = #{fighter}
         </if>
         <if test="clothing!=0">
-            AND ccf.C_C_F_Clothing = #{clothing}
+            AND ul.U_Clothing = #{clothing}
         </if>
         <if test="star!=0">
             AND (ci.Card_I_Star = #{star} or cm.Card_M_Star = #{star})

@@ -22,7 +22,9 @@ public class cardPageProcessor  implements PageProcessor{
         cardInit cardInit = new cardInit();
         cardMax cardMax = new cardMax();
         Map<String,skill> skill= new HashMap<String,skill>();
-        skill temp = new skill();
+        skill center = new skill();
+        skill action = new skill();
+        skill live = new skill();
         List<String> singer = new ArrayList<String>();
         if (page.getHtml().xpath("//div[@class='page']/h1/text()").toString().equals("ガチャ情報")){
             page.setSkip(true);
@@ -53,17 +55,17 @@ public class cardPageProcessor  implements PageProcessor{
             cardMax.setCard_M_FoldWave(Integer.parseInt(page.getHtml().xpath("//table[@id='content_block_11']/tbody/tr[3]/td[4]/text()").toString()));
             cardMax.setCard_M_Luck(Integer.parseInt(page.getHtml().xpath("//table[@id='content_block_11']/tbody/tr[3]/td[5]/text()").toString()));
             //筛选卡Center技能信息
-            temp.setSkill_J(page.getHtml().xpath("//table[@id='content_block_19']/tbody/tr[1]/td[2]/text()").toString());
-            temp.setSkill_J_max(page.getHtml().xpath("//table[@id='content_block_19]/tbody/tr[2]/td[2]/text()").toString());
-            skill.put("Center", temp);
+            center.setSkill_J(page.getHtml().xpath("//table[@id='content_block_19']/tbody/tr[1]/td[2]/text()").toString());
+            center.setSkill_J_max(page.getHtml().xpath("//table[@id='content_block_19]/tbody/tr[2]/td[2]/text()").toString());
+            skill.put("Center", center);
             //筛选卡Action技能信息
-            temp.setSkill_J(page.getHtml().xpath("//table[@id='content_block_24']/tbody/tr[1]/td[2]/text()").toString());
-            temp.setSkill_J_max(page.getHtml().xpath("//table[@id='content_block_24]/tbody/tr[2]/td[2]/text()").toString());
-            skill.put("Action", temp);
+            action.setSkill_J(page.getHtml().xpath("//table[@id='content_block_24']/tbody/tr[1]/td[2]/text()").toString());
+            action.setSkill_J_max(page.getHtml().xpath("//table[@id='content_block_24]/tbody/tr[2]/td[2]/text()").toString());
+            skill.put("Action", action);
             //筛选卡Live技能信息
-            temp.setSkill_J(page.getHtml().xpath("//table[@id='content_block_29']/tbody/tr[1]/td[2]/text()").toString());
-            temp.setSkill_J_max(page.getHtml().xpath("//table[@id='content_block_29]/tbody/tr[2]/td[2]/text()").toString());
-            skill.put("Live", temp);
+            live.setSkill_J(page.getHtml().xpath("//table[@id='content_block_29']/tbody/tr[1]/td[2]/text()").toString());
+            live.setSkill_J_max(page.getHtml().xpath("//table[@id='content_block_29]/tbody/tr[2]/td[2]/text()").toString());
+            skill.put("Live", live);
             //筛选相性歌姬信息
             singer = page.getHtml().xpath("//table[@id=content_block_33]/tbody/tr/td[2]/div/b/a/text()").all();
 
@@ -71,7 +73,7 @@ public class cardPageProcessor  implements PageProcessor{
             page.putField("init", cardInit);
             page.putField("max", cardMax);
             page.putField("attr", page.getHtml().xpath("//table[@id='content_block_6']/tbody/tr[1]/td[2]/text()").toString());
-            page.putField("unlock", page.getHtml().xpath("//table[@id='content_block_6']/tbody/tr[2]/td[2]/a/text()").toString());
+            page.putField("un_lock", page.getHtml().xpath("//table[@id='content_block_6']/tbody/tr[2]/td[2]/a/text()").toString());
             page.putField("skill", skill);
             page.putField("singer", singer);
         }

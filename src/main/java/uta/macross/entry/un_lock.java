@@ -1,27 +1,27 @@
 package uta.macross.entry;
 
-public class unlock {
-    private int U_Id;
+public class un_lock {
+    private int U_ID;
     private String U_Name;
     private String U_Fighter;
     private String U_Clothing;
 
-    public unlock() {
+    public un_lock() {
     }
 
-    public unlock(int u_Id, String u_Name, String u_Fighter, String u_Clothing) {
-        U_Id = u_Id;
+    public un_lock(int u_Id, String u_Name, String u_Fighter, String u_Clothing) {
+        U_ID = u_Id;
         U_Name = u_Name;
         U_Fighter = u_Fighter;
         U_Clothing = u_Clothing;
     }
 
-    public int getU_Id() {
-        return U_Id;
+    public int getU_ID() {
+        return U_ID;
     }
 
-    public void setU_Id(int u_Id) {
-        U_Id = u_Id;
+    public void setU_ID(int u_Id) {
+        U_ID = u_Id;
     }
 
     public String getU_Name() {
@@ -50,8 +50,8 @@ public class unlock {
 
     @Override
     public String toString() {
-        return "unlock{" +
-                "U_Id=" + U_Id +
+        return "un_lock{" +
+                "U_ID=" + U_ID +
                 ", U_Name='" + U_Name + '\'' +
                 ", U_Fighter='" + U_Fighter + '\'' +
                 ", U_Clothing='" + U_Clothing + '\'' +

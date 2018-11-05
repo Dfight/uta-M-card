@@ -10,13 +10,40 @@
     <select id="getAttrIdByAttrName" resultType="uta.macross.entry.attribute" parameterType="java.lang.String">
         SELECT * from attribute where Attr_Name = #{name}
     </select>
-    <select id="existUnlockByName" resultType="uta.macross.entry.unlock" parameterType="java.lang.String">
-        SELECT * from unlock WHERE Card_Name = #{name}
+    <select id="existUnlockByName" resultType="uta.macross.entry.un_lock" parameterType="java.lang.String">
+        SELECT * from un_lock WHERE U_Name = #{name}
     </select>
-    <insert id="addUnlock" parameterType="uta.macross.entry.unlock">
+    <insert id="addUnlock" parameterType="uta.macross.entry.un_lock">
         <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="U_ID">
             SELECT LAST_INSERT_ID() AS U_ID
         </selectKey>
-        INSERT INTO unlock(U_Name) VALUES (#{U_Name})
+        INSERT INTO un_lock(U_Name) VALUES (#{U_Name})
     </insert>
+    <insert id="addCardUnlock" parameterType="uta.macross.entry.card_unlock">
+        INSERT INTO card_unlock(U_ID,C_ID) VALUES (#{U_ID},#{C_ID})
+    </insert>
+    <select id="getSkillIdByEffect" resultType="uta.macross.entry.skill">
+        Select * from skill where Skill_J = #{effect_I} AND Skill_J_max = #{effect_M}
+    </select>
+    <insert id="addSkillAuto" parameterType="uta.macross.entry.skill">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="Skill_ID">
+            SELECT LAST_INSERT_ID() AS Skill_ID
+        </selectKey>
+        INSERT INTO Skill(Skill_Type,Skill_J,Skill_C,Skill_J_max,Skill_C_max) VALUES (#{Skill_Type},#{Skill_J},#{Skill_J},#{Skill_J_max},#{Skill_J_max})
+    </insert>
+    <select id="getSkillToDoType" resultType="uta.macross.entry.skill_type" parameterType="java.lang.String">
+        SELECT * from skill_Type where pos = #{pos} and type = '待定'
+    </select>
+    <insert id="addSkillToDoType" parameterType="uta.macross.entry.skill_type">
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS id
+        </selectKey>
+        INSERT INTO Skill_Type(pos,type) VALUES (#{pos},#{type})
+    </insert>
+    <select id="getSingerIdByName" parameterType="java.lang.String" resultType="uta.macross.entry.singer">
+        select * from singer where Singer_Name = #{name}
+    </select>
+    <select id="getToDoOpus" resultType="uta.macross.entry.opus">
+        SELECT  * from opus where Opus_Name = '待定'
+    </select>
 </mapper>

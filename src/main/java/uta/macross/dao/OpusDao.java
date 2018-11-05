@@ -11,4 +11,6 @@ public interface OpusDao {
     public int addOpus(opus o);
     //获取所有作品信息
     public List<opus> queryAllOpus();
+    //获取作品总数
+    public Integer getCountOpus();
 }

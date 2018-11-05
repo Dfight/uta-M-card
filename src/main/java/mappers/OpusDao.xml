@@ -7,8 +7,10 @@
         insert into OPUS(OPUS_NAME,OPUS_IMG) VALUES(#{Opus_Name},#{Opus_IMG})
     </insert>
     <select id="queryAllOpus" resultType="uta.macross.entry.opus">
-        Select * from opus
+        Select * from opus where Opus_Name != '待定'
     </select>
-
+    <select id="getCountOpus" resultType="java.lang.Integer">
+        select count(*) from opus
+    </select>
 
 </mapper>

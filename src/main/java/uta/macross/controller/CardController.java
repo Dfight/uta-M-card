@@ -146,8 +146,9 @@ public class CardController {
     @ResponseBody
     public String webmagic(){
         Spider.create(new cardPageProcessor()).
-                addUrl("https://歌マクロス.gamematome.jp/game/977/wiki/最新情報_ガチャ情報")
+                //addUrl("https://歌マクロス.gamematome.jp/game/977/wiki/最新情報_ガチャ情報")
                 //addUrl("https://歌マクロス.gamematome.jp/game/977/wiki/プレート_Welcome%20to%20Walküre%20World")
+                addUrl("https://歌マクロス.gamematome.jp/game/977/wiki/プレート_輝く明日への想い")
                 .addPipeline(cardPiprline)
                 .thread(5)
                 .run();
