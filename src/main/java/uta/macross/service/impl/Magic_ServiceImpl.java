@@ -56,11 +56,7 @@ public class Magic_ServiceImpl implements Magic_Service{
 
     public int getSkillToDoType(String pos) {
         skill_type skilltype = magic_dao.getSkillToDoType(pos);
-        if (skilltype==null){
-            skilltype.setPos(pos);
-            skilltype.setType("待定");
-            magic_dao.addSkillToDoType(skilltype);
-        }
+
         return skilltype.getId();
     }
 
@@ -72,5 +68,28 @@ public class Magic_ServiceImpl implements Magic_Service{
     public int getToDoOpus(){
         opus opus = magic_dao.getToDoOpus();
         return opus.getOpus_ID();
+    }
+
+    public boolean existClothing(String name,String singer) {
+        clothing clothing = magic_dao.existClothing(name,singer);
+        if(clothing==null){
+            return false;
+        }else{
+            return true;
+        }
+
+    }
+
+    public int updateUnlock(un_lock un_lock) {
+        return magic_dao.updateUnlock(un_lock);
+    }
+
+    public boolean existFighter(String name) {
+        fighter fighter = magic_dao.existFighter(name);
+        if(fighter == null){
+            return false;
+        }else{
+            return true;
+        }
     }
 }

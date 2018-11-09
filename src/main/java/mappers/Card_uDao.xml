@@ -133,11 +133,30 @@
         GROUP BY c.Card_ID) a
         LIMIT #{start},#{end}
     </select>
-    <select id="getCardType" resultType="uta.macross.entry.cardClothingFighter">
-        select * from card_clothing_fighter WHERE C_C_F_Card = #{id}
+    <select id="getCardType" resultType="uta.macross.entry.un_lock">
+     <!--    select * from card_clothing_fighter WHERE C_C_F_Card = #{id}-->
+    select ul.* from un_lock ul,card_unlock cu where cu.U_ID = ul.U_ID AND cu.C_ID = #{id}
+    </select>
+    <select id="getCard" resultType="java.util.HashMap">
+        SELECT
+        card.*,attribute.Attr_IMG,attribute.Attr_Name,
+        card_init.*,card_max.*,
+        opus.Opus_IMG,opus.Opus_Name
+        from
+        attribute,attr_card,
+        card,card_init,card_max,
+        opus,opus_card
+        WHERE
+        attribute.Attr_ID = attr_card.AC_AID
+        AND	attr_card.AC_CID = card.Card_ID
+        AND card.Card_ID = card_init.Card_ID
+        AND card.Card_ID = card_max.Card_ID
+        AND card.Card_ID = opus_card.O_Card_CID
+        AND opus.Opus_ID = opus_card.O_Card_OID
+        AND card.Card_ID = #{id}
     </select>
     <select id="getCardF" resultType="java.util.HashMap">
-        SELECT
+        <!--SELECT
             card.*,attribute.Attr_IMG,attribute.Attr_Name,
             card_init.*,card_max.*,
             fighter.*,
@@ -156,10 +175,19 @@
             AND card_clothing_fighter.C_C_F_Fighter = fighter.Fighter_ID
             AND card.Card_ID = opus_card.O_Card_CID
             AND opus.Opus_ID = opus_card.O_Card_OID
-            AND card.Card_ID = #{id}
+            AND card.Card_ID = #{id}-->
+        SELECT
+        fighter.*
+        from
+        card,un_lock,card_unlock, fighter
+        WHERE
+        card.Card_ID = card_unlock.C_ID
+        AND card_unlock.U_ID = un_lock.U_ID
+        AND un_lock.U_Fighter = fighter.Fighter_ID
+        AND card.Card_ID = #{id}
     </select>
     <select id="getCardC" resultType="java.util.HashMap">
-        SELECT
+        <!--SELECT
         card.*,attribute.Attr_IMG,attribute.Attr_Name,
         card_init.*,card_max.*,
         clothing.*,
@@ -178,6 +206,15 @@
         AND card_clothing_fighter.C_C_F_Clothing = clothing.Clothing_ID
         AND card.Card_ID = opus_card.O_Card_CID
         AND opus.Opus_ID = opus_card.O_Card_OID
+        AND card.Card_ID = #{id}-->
+        SELECT
+        clothing.*
+        from
+        card,un_lock,card_unlock,clothing
+        WHERE
+         card.Card_ID = card_unlock.C_ID
+        AND card_unlock.U_ID = un_lock.U_ID
+        AND un_lock.U_Clothing = clothing.Clothing_ID
         AND card.Card_ID = #{id}
     </select>
     <select id="getSingerByCard" resultType="java.util.HashMap">

@@ -2,6 +2,7 @@ package uta.macross.service;
 
 import org.apache.ibatis.annotations.Param;
 import uta.macross.entry.cardClothingFighter;
+import uta.macross.entry.un_lock;
 
 import java.util.HashMap;
 import java.util.List;
@@ -21,7 +22,9 @@ public interface Card_uService {
                                                      Integer skillLive,
                                                      Integer skillAction);
     //获取卡类型
-    public cardClothingFighter getCardType(@Param("id") Integer id);
+    public un_lock getCardType(@Param("id") Integer id);
+    //获取卡
+    public HashMap<String,Object> getCard(@Param("id") Integer id);
     //获取卡(飞机)
     public HashMap<String,Object> getCardF(@Param("id") Integer id);
     //获取卡(衣服)

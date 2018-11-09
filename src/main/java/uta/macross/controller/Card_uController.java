@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import uta.macross.entry.cardClothingFighter;
+import uta.macross.entry.un_lock;
 import uta.macross.service.Card_uService;
 
 import java.util.ArrayList;
@@ -40,12 +41,15 @@ public class Card_uController {
     @ResponseBody
     public String getCardInfo(int id){
         JSONObject jsonObject = new JSONObject();
-        cardClothingFighter cardType = card_uService.getCardType(id);
+        un_lock cardType = card_uService.getCardType(id);
         HashMap<String,Object> card ;
-        if(cardType.getC_C_F_Clothing()!=0){
-             card = card_uService.getCardC(id);
+        HashMap<String,Object> fighter =new HashMap<String, Object>();
+        HashMap<String,Object> clothing =new HashMap<String, Object>();
+        card = card_uService.getCard(id);
+        if(cardType.getU_Clothing()!=0){
+            clothing = card_uService.getCardC(id);
         }else {
-             card = card_uService.getCardF(id);
+            fighter = card_uService.getCardF(id);
         }
         HashMap<String,Object> skill;
         skill = card_uService.getSkillByType((String) card.get("Card_I_C_S"));
@@ -58,6 +62,8 @@ public class Card_uController {
         card.put("Card_I_A_S",skill.get("Skill_C"));
         card.put("Card_M_A_S",skill.get("Skill_C_max"));
         List<HashMap<String,Object>> singer=card_uService.getSingerByCard(id);
+        jsonObject.put("fighter",fighter);
+        jsonObject.put("clothing",clothing);
         jsonObject.put("card",card);
         jsonObject.put("singer",singer);
         return jsonObject.toJSONString();

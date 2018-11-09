@@ -29,9 +29,12 @@
         <div class="col-md-12" id="attr">
             <img :src="attrIMG" style='display: inline-block;width: 70px'>
         </div>
-        <div class="col-md-12" id="opus">
+        <div class="col-md-12" id="opus" v-if="opusIMG!='undefined'">
              <img :src="opusIMG" style='display: inline-block;width: 100%;margin-top: -60px'>
         </div>
+        <p v-if="opusIMG=='undefined'" style="margin-top: 170px;font-size: 16px">
+            管理员暂未绑定本卡的作品信息,请联系管理员绑定
+        </p>
     </div>
     <div class="col-md-8" >
         <div id="star" style="margin-top: -70px">
@@ -212,6 +215,8 @@
     }
     $.ajax({
         url:"http://localhost:8080/uta-macross/card_u/getCardInfo",
+        //url:"http://kimirai7.w3.luyouxia.net/uta-macross/card_u/getCardInfo",
+        //url:"http://192.168.2.164:8080/uta-macross/card_u/getCardInfo",
         dataType:'json',
         async:false,
         data:{
@@ -221,9 +226,15 @@
             console.log(data.card);
             var c = data.card;
             var s = data.singer;
+            var fighter = data.fighter;
+            var clothing = data.clothing;
             card.cardName = c.Card_Name;
             card.attrIMG = img+c.Attr_IMG;
-            card.opusIMG = img+c.Opus_IMG;
+            if (typeof (c.Opus_IMG)=="undefined"){
+                card.opusIMG = "undefined"
+            }else{
+                card.opusIMG = img+c.Opus_IMG;
+            }
             card.I_IMG = img+c.Card_I_IMG;
             card.M_IMG = img+c.Card_M_IMG;
             card.initStar=c.Card_I_Star;
@@ -246,20 +257,20 @@
             s.forEach(function (i) {
                 card.singer.push({img:img+i.Singer_IMG})
             })
-            if(c.Fighter_ID!=undefined){
+            if(fighter!=undefined&& fighter.Fighter_ID!=undefined){
                     $("#fighter").css("display","block");
-                    card.fighterIMG=img+c.Fighter_IMG;
-                    card.fighterDriver=c.Fighter_Driver;
-                    card.fighterName=c.Fighter_Name;
-                    card.fighterAttack=c.Fighter_Attack;
-                    card.fighterHit=c.Fighter_Hit;
+                    card.fighterIMG=img+fighter.Fighter_IMG;
+                    card.fighterDriver=fighter.Fighter_Driver;
+                    card.fighterName=fighter.Fighter_Name;
+                    card.fighterAttack=fighter.Fighter_Attack;
+                    card.fighterHit=fighter.Fighter_Hit;
 
-            }else{
+            }else if(clothing!=undefined&&clothing.Clothing_ID!=undefined){
                 $("#clothing").css("display","block");
-                card.clothingIMG=img+c.Clothing_IMG;
+                card.clothingIMG=img+clothing.Clothing_IMG;
                 card.clothingSinger="";
-                card.clothingName=c.Clothing_Name;
-                card.clothingFeatures=c.Clothing_Features;
+                card.clothingName=clothing.Clothing_Name;
+                card.clothingFeatures=clothing.Clothing_Features;
             }
 
         }

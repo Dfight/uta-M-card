@@ -1,4 +1,4 @@
-package uta.macross.util;
+package uta.macross.piprline;
 
 import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.ResultItems;

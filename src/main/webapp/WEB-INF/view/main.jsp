@@ -21,20 +21,22 @@
     <span class="caret" style="float: right;margin-top: 25px;"></span>
 </div>
 <div id="common" style="display: none" class="col-md-4 col-md-offset-4">
-    <div class="col-md-11 col-md-offset-1 commonDIV" onclick="ToSinger()">
-        <h4 style="line-height: 50px;display: inline">添加/修改歌姬</h4>
+    <div class="col-md-11 col-md-offset-1 commonDIV">
+        <h4 style="line-height: 50px;display: inline">
+            <a href="/uta-macross/view/singer">添加/修改歌姬</a>
+        </h4>
     </div>
-    <div class="col-md-11 col-md-offset-1 commonDIV"  onclick="ToOpus()">
-        <h4 style="line-height: 50px;display: inline">添加/修改作品</h4>
+    <div class="col-md-11 col-md-offset-1 commonDIV" >
+        <h4 style="line-height: 50px;display: inline"><a href="/uta-macross/view/opus">添加/修改作品</a></h4>
     </div>
-    <div class="col-md-11 col-md-offset-1 commonDIV"  onclick="ToAttribute()">
-        <h4 style="line-height: 50px;display: inline">添加/修改属性</h4>
+    <div class="col-md-11 col-md-offset-1 commonDIV" >
+        <h4 style="line-height: 50px;display: inline"><a href="/uta-macross/view/attribute">添加/修改属性</a></h4>
     </div>
-    <div class="col-md-11 col-md-offset-1 commonDIV" onclick="ToDifficult()">
-        <h4 style="line-height: 50px;display: inline">添加/修改难度</h4>
+    <div class="col-md-11 col-md-offset-1 commonDIV" >
+        <h4 style="line-height: 50px;display: inline"><<a href="/uta-macross/view/difficult">添加/修改难度</a></h4>
     </div>
-    <div class="col-md-11 col-md-offset-1 commonDIV" onclick="ToSkill()">
-        <h4 style="line-height: 50px;display: inline">添加/修改技能</h4>
+    <div class="col-md-11 col-md-offset-1 commonDIV" >
+        <h4 style="line-height: 50px;display: inline"><<a href="/uta-macross/view/skill">添加/修改技能</a></h4>
     </div>
 </div>
 <div class="col-md-4 col-md-offset-4 loginDIV" style="min-height: 30px;margin-top: 0px" onclick="common2()">
@@ -42,11 +44,11 @@
     <span class="caret" style="float: right;margin-top: 25px;"></span>
 </div>
 <div id="song" style="display: none" class="col-md-4 col-md-offset-4">
-    <div class="col-md-11 col-md-offset-1 commonDIV" onclick="ToAddSong()">
-        <h4 style="line-height: 50px;display: inline">添加歌曲</h4>
+    <div class="col-md-11 col-md-offset-1 commonDIV" >
+        <h4 style="line-height: 50px;display: inline"><<a href="/uta-macross/view/addSong">添加歌曲</a></h4>
     </div>
-    <div class="col-md-11 col-md-offset-1 commonDIV"  onclick="ToEditSong()">
-        <h4 style="line-height: 50px;display: inline">修改歌曲</h4>
+    <div class="col-md-11 col-md-offset-1 commonDIV"  >
+        <h4 style="line-height: 50px;display: inline"><<a href="/uta-macross/view/editSong">修改歌曲</a></h4>
     </div>
 </div>
 <div class="col-md-4 col-md-offset-4 loginDIV" style="min-height: 30px;margin-top: 0px" onclick="common3()">
@@ -54,20 +56,25 @@
     <span class="caret" style="float: right;margin-top: 25px;"></span>
 </div>
 <div id="F_C" style="display: none" class="col-md-4 col-md-offset-4">
-    <div class="col-md-11 col-md-offset-1 commonDIV" onclick="ToFighter()">
-        <h4 style="line-height: 50px;display: inline">添加/修改飞机</h4>
+    <div class="col-md-11 col-md-offset-1 commonDIV" >
+        <h4 style="line-height: 50px;display: inline"><<a href="/uta-macross/view/fighter">添加/修改飞机</a></h4>
     </div>
-    <div class="col-md-11 col-md-offset-1 commonDIV" onclick="ToClothing()">
-        <h4 style="line-height: 50px;display: inline">添加/修改衣服</h4>
+    <div class="col-md-11 col-md-offset-1 commonDIV" >
+        <h4 style="line-height: 50px;display: inline"><<a href="/uta-macross/view/clothing">添加/修改衣服</a></h4>
     </div>
 </div>
 <div class="col-md-4 col-md-offset-4 loginDIV" style="min-height: 30px;margin-top: 0px" onclick="common4()">
-    <h4 style="line-height: 50px;display: inline">卡面属性设置</h4>
+    <h4 style="line-height: 50px;display: inline">管理员绑定</h4>
     <span class="caret" style="float: right;margin-top: 25px;"></span>
 </div>
 <div id="card" style="display: none" class="col-md-4 col-md-offset-4">
-    <div class="col-md-11 col-md-offset-1 commonDIV" onclick="ToAddCard()">
-        <h4 style="line-height: 50px;display: inline">添加卡</h4>
+    <div class="col-md-11 col-md-offset-1 commonDIV" >
+        <h4 style="line-height: 50px;display: inline">
+            <a href="/uta-macross/view/cardOpus">绑定卡-作品</a></h4>
+    </div>
+    <div class="col-md-11 col-md-offset-1 commonDIV" >
+        <h4 style="line-height: 50px;display: inline">
+            <a href="/uta-macross/view/fighterOpus">绑定飞机-作品</a></h4>
     </div>
 </div>
 <script type="text/javascript">
@@ -96,36 +103,7 @@
         $("#F_C").slideUp();
         $("#card").slideDown();
     }
-    function ToAddCard() {
-        window.location.href= strToAddCard;
-    }
-    function ToFighter() {
-        window.location.href= strToFighter;
-    }
-    function ToClothing() {
-        window.location.href= strToClothing;
-    }
-    function ToAddSong(){
-        window.location.href= strToAddSong;
-    }
-    function ToEditSong(){
-        window.location.href= strToEditSong;
-    }
-    function ToSinger(){
-        window.location.href= strToSinger;
-    }
-    function ToOpus(){
-        window.location.href= strToOpus;
-    }
-    function ToAttribute(){
-        window.location.href= strToAttribute;
-    }
-    function ToDifficult(){
-        window.location.href= strToDifficult;
-    }
-    function ToSkill(){
-        window.location.href= strToSkill;
-    }
+
 </script>
 </body>
 </html>

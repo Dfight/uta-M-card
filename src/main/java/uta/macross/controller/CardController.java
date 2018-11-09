@@ -11,12 +11,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import us.codecraft.webmagic.Spider;
 import uta.macross.entry.*;
 import uta.macross.service.CardService;
-import uta.macross.util.cardPageProcessor;
-import uta.macross.util.cardPiprline;
+import uta.macross.processor.cardPageProcessor;
+import uta.macross.piprline.cardPiprline;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/card")
@@ -137,21 +135,4 @@ public class CardController {
         return cardMax;
     }
 
-    @Qualifier("cardPiprline")
-    @Autowired
-    private cardPiprline cardPiprline ;
-
-
-    @RequestMapping("/webmagic")
-    @ResponseBody
-    public String webmagic(){
-        Spider.create(new cardPageProcessor()).
-                //addUrl("https://歌マクロス.gamematome.jp/game/977/wiki/最新情報_ガチャ情報")
-                //addUrl("https://歌マクロス.gamematome.jp/game/977/wiki/プレート_Welcome%20to%20Walküre%20World")
-                addUrl("https://歌マクロス.gamematome.jp/game/977/wiki/プレート_輝く明日への想い")
-                .addPipeline(cardPiprline)
-                .thread(5)
-                .run();
-       return null;
-    }
 }

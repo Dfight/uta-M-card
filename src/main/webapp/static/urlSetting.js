@@ -1,17 +1,9 @@
-var path = 'http://localhost:8080/uta-macross'
+var path = 'http://localhost:8080/uta-macross';
+//var path = 'http://kimirai7.w3.luyouxia.net/uta-macross';
+//var path = 'http://192.168.2.164:8080/uta-macross';
 
 var strLogin = path+'/view/login';
 var strToMain = path+'/view/toMain';
-var strToSinger = path+'/view/singer';
-var strToOpus = path+'/view/opus';
-var strToAttribute  = path+'/view/attribute';
-var strToDifficult = path+'/view/difficult';
-var strToAddSong = path+'/view/addSong';
-var strToEditSong = path+'/view/editSong';
-var strToFighter = path+'/view/fighter';
-var strToClothing = path+'/view/clothing';
-var strToAddCard = path+'/view/addCard';
-var strToSkill = path+'/view/skill';
 
 
 //添加歌姬
@@ -67,3 +59,17 @@ var strAddSkill = path +'/skill/addSkill';
 
 //添加卡
 var strAddCard = path + '/card/addCard';
+
+
+
+
+//以下为绑定相关
+//获取一张没有绑定作品的卡
+var strGetNoOpusCard = path+ '/bind/getNoOpusCard';
+//绑定卡和作品
+var strBindCardOpus = path + '/bind/cardOpus';
+
+//获取一个没有绑定的飞机
+var strGetNoOpusFighter = path+ '/bind/getFighter';
+//绑定飞机和作品
+var strBindFighterOpus = path + '/bind/fighterOpus';

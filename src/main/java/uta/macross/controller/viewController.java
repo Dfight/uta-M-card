@@ -84,11 +84,18 @@ public class viewController {
         modelAndView.setViewName("fighterAndClothing/clothing");
         return modelAndView;
     }
-    @RequestMapping("/addCard")
+    @RequestMapping("/cardOpus")
     @ResponseBody
-    public ModelAndView addCard(){
+    public ModelAndView cardOpus(){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("card/AddCard");
+        modelAndView.setViewName("bind/cardOpus");
+        return modelAndView;
+    }
+    @RequestMapping("/fighterOpus")
+    @ResponseBody
+    public ModelAndView fighterOpus(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("bind/fighterOpus");
         return modelAndView;
     }
     @RequestMapping("/skill")

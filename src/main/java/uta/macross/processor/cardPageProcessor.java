@@ -1,4 +1,4 @@
-package uta.macross.util;
+package uta.macross.processor;
 
 
 import us.codecraft.webmagic.Page;
@@ -26,7 +26,10 @@ public class cardPageProcessor  implements PageProcessor{
         skill action = new skill();
         skill live = new skill();
         List<String> singer = new ArrayList<String>();
-        if (page.getHtml().xpath("//div[@class='page']/h1/text()").toString().equals("ガチャ情報")){
+        if (page.getHtml().xpath("//div[@class='page']/h1/text()").toString().equals("ガチャ情報")||page.getHtml().xpath("//div[@class='page']/h1/text()").toString().equals("プレート")){
+            List<String> urls = page.getHtml().xpath("//table[@id=content_block_4]").links().all();
+            urls.subList(0,50);
+            page.addTargetRequests(urls);
             page.setSkip(true);
         }else {
             //筛选卡基础信息相关内容
@@ -77,8 +80,7 @@ public class cardPageProcessor  implements PageProcessor{
             page.putField("skill", skill);
             page.putField("singer", singer);
         }
-        List<String> urls = page.getHtml().xpath("//table[@id=content_block_4]").links().all();
-        page.addTargetRequests(urls);
+
         //System.out.println(page.getHtml().xpath("//table[@id=content_block_4]").links().all().toString());
     }
 

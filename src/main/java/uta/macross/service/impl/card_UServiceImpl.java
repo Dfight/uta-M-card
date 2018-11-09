@@ -7,6 +7,7 @@ import uta.macross.dao.Magic_Dao;
 import uta.macross.dao.OpusDao;
 import uta.macross.entry.cardClothingFighter;
 import uta.macross.entry.opus;
+import uta.macross.entry.un_lock;
 import uta.macross.service.Card_uService;
 
 
@@ -40,8 +41,12 @@ public class card_UServiceImpl implements Card_uService {
         return card_uDao.getAllCard(attr,opus,fighter,clothing,star,start,end,singer,skillCenter,skillLive,skillAction);
     }
 
-    public cardClothingFighter getCardType(Integer id) {
+    public un_lock getCardType(Integer id) {
         return card_uDao.getCardType(id);
+    }
+
+    public HashMap<String,Object> getCard(Integer id) {
+        return card_uDao.getCard(id);
     }
 
     public HashMap<String,Object> getCardF(Integer id) {

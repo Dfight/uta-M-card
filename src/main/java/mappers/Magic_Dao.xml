@@ -17,7 +17,7 @@
         <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="U_ID">
             SELECT LAST_INSERT_ID() AS U_ID
         </selectKey>
-        INSERT INTO un_lock(U_Name) VALUES (#{U_Name})
+        INSERT INTO un_lock(U_Name,U_IMG) VALUES (#{U_Name},#{U_IMG})
     </insert>
     <insert id="addCardUnlock" parameterType="uta.macross.entry.card_unlock">
         INSERT INTO card_unlock(U_ID,C_ID) VALUES (#{U_ID},#{C_ID})
@@ -45,5 +45,18 @@
     </select>
     <select id="getToDoOpus" resultType="uta.macross.entry.opus">
         SELECT  * from opus where Opus_Name = '待定'
+    </select>
+    <select id="existClothing" resultType="uta.macross.entry.clothing">
+        select clothing.* from clothing,singer_clothing,singer
+        where clothing.Clothing_ID = singer_clothing.Singer_Clothing_CID
+        and singer_clothing.Singer_Clothing_SID = singer.Singer_ID
+        and singer.Singer_Name = #{singer}
+        and clothing.Clothing_Name = #{name}
+    </select>
+    <update id="updateUnlock" parameterType="uta.macross.entry.un_lock">
+        UPDATE un_lock SET U_Clothing = #{U_Clothing},U_Fighter = #{U_Fighter} where U_ID = #{U_ID}
+    </update>
+    <select id="existFighter" resultType="uta.macross.entry.fighter" parameterType="java.lang.String">
+        select * from fighter where Fighter_Name = #{name}
     </select>
 </mapper>

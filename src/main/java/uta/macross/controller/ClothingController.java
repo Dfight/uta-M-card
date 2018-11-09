@@ -2,11 +2,16 @@ package uta.macross.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import us.codecraft.webmagic.Spider;
 import uta.macross.entry.clothing;
 import uta.macross.entry.singer_clothing;
+import uta.macross.piprline.clothingPiprline;
+import uta.macross.processor.cardPageProcessor;
+import uta.macross.processor.clothingPageProcessor;
 import uta.macross.service.ClothingService;
 
 import java.util.List;
@@ -48,4 +53,10 @@ public class ClothingController {
         jsonObject.put("res",singer);
         return jsonObject.toJSONString();
     }
+
+
+
+
+
+
 }

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="uta.macross.dao.bindingDao">
+    <select id="getNoOpusCard" resultType="java.util.HashMap">
+        SELECT card.*,card_init.Card_I_IMG,card_max.Card_M_IMG FROM `card`,card_init,card_max,opus_card,opus
+        where card.Card_ID = card_init.Card_ID
+        and card.Card_ID = card_max.Card_ID
+        and card.Card_ID = opus_card.O_Card_CID
+        and opus.Opus_ID = opus_card.O_Card_OID
+        and opus.Opus_Name = '待定'
+        LIMIT 1;
+    </select>
+    <update id="bindCardOpus" parameterType="uta.macross.entry.opus_card">
+        UPDATE  opus_card SET O_Card_OID = #{O_Card_OID} where O_Card_CID = #{O_Card_CID}
+    </update>
+    <select id="getFighter" resultType="java.util.HashMap">
+        SELECT f.Fighter_ID,f.Fighter_Name,f.Fighter_IMG
+        FROM fighter f
+        where  NOT EXISTS (select * from opus_fighter of where f.Fighter_ID = of.O_Fighter_FID)
+        LIMIT 1;
+    </select>
+    <insert id="bindFighterOpus" parameterType="uta.macross.entry.opus_fighter">
+        INSERT  into opus_fighter (O_Fighter_OID,O_Fighter_FID) VALUES (#{O_Fighter_OID},#{O_Fighter_FID})
+    </insert>
+
+
+</mapper>

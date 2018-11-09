@@ -28,4 +28,10 @@ public interface Magic_Dao {
     public singer getSingerIdByName(String name);
     //获取作品 待定 ID
     public opus getToDoOpus();
+    //根据衣服名判断是否已收录
+    public clothing existClothing(@Param("name") String name,@Param("singer") String singer);
+    //修改unlock,绑定衣服飞机
+    public int updateUnlock(un_lock un_lock);
+    //根据衣服名判断是否已收录
+    public fighter existFighter(String name);
 }

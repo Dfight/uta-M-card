@@ -27,4 +27,10 @@ public interface Magic_Service {
     public int getSingerIdByName(String name);
     //获取作品 待定 ID
     public int getToDoOpus();
+    //根据衣服名判断是否已收录
+    public boolean existClothing(String name,String singer);
+    //修改unlock,绑定衣服飞机
+    public int updateUnlock(un_lock un_lock);
+    //根据飞机名判断是否已收录
+    public boolean existFighter(String name);
 }
