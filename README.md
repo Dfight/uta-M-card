@@ -1,3 +1,7 @@
+# 因原设计方式存在漏洞,本项目已暂停后续进度.
+# 近期将上线Remake版本
+
+
 # uta-M-card
 Check card for uta-macross 
 ## To Do List
